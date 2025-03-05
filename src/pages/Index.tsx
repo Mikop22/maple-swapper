@@ -1,8 +1,7 @@
-
 import Layout from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, MapleLeaf, ShoppingCart, DollarSign } from 'lucide-react';
+import { ArrowRight, Leaf, ShoppingCart, DollarSign } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
@@ -24,7 +23,7 @@ const Index = () => {
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center px-3 py-1 rounded-full bg-canada-red/10 text-canada-red mb-6 animate-fade-in">
-              <MapleLeaf className="h-4 w-4 mr-2" />
+              <Leaf className="h-4 w-4 mr-2" />
               <span className="text-sm font-medium">Combat US tariffs with Canadian alternatives</span>
             </div>
             
@@ -78,7 +77,7 @@ const Index = () => {
                 delay: "0.1s"
               },
               {
-                icon: <MapleLeaf className="h-6 w-6" />,
+                icon: <Leaf className="h-6 w-6" />,
                 title: "Discover Alternatives",
                 description: "Our system finds Canadian-made alternatives to American products.",
                 delay: "0.2s"

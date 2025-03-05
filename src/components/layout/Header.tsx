@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { MapleLeaf, Menu, X } from 'lucide-react';
+import { Leaf, Menu, X } from 'lucide-react';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -30,7 +30,7 @@ const Header = () => {
           className="flex items-center gap-2 transition-transform duration-300 hover:scale-105"
           onClick={() => setMobileMenuOpen(false)}
         >
-          <MapleLeaf className="h-6 w-6 text-canada-red" />
+          <Leaf className="h-6 w-6 text-canada-red" />
           <span className="font-medium text-lg text-canada-dark dark:text-white">MapleSwap</span>
         </NavLink>
         

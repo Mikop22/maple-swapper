@@ -1,10 +1,9 @@
-
 import { useState } from 'react';
 import { Product } from '@/data/products';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
-import { MapleLeaf, Info } from 'lucide-react';
+import { Leaf, Info } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -37,7 +36,7 @@ const ProductCard = ({ product, compact = false, className }: ProductCardProps) 
         />
         {product.origin === 'Canada' && (
           <div className="absolute top-2 right-2 flex items-center gap-1 bg-white/70 dark:bg-black/70 backdrop-blur-sm px-2 py-1 rounded-full">
-            <MapleLeaf className="h-3.5 w-3.5 text-canada-red" />
+            <Leaf className="h-3.5 w-3.5 text-canada-red" />
             <span className="text-xs font-medium">Canadian</span>
           </div>
         )}

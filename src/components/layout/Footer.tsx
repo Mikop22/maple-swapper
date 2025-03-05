@@ -1,5 +1,5 @@
 
-import { MapleLeaf, Github, Mail } from 'lucide-react';
+import { Leaf, Github, Mail } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2">
-            <MapleLeaf className="h-5 w-5 text-canada-red" />
+            <Leaf className="h-5 w-5 text-canada-red" />
             <span className="font-medium text-gray-700 dark:text-gray-300">MapleSwap</span>
           </div>
           
