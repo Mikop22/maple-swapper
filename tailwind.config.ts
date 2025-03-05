@@ -19,6 +19,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['Inter', 'system-ui', 'sans-serif'],
+				display: ['Montserrat', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -67,7 +71,8 @@ export default {
 					red: '#FF4545',
 					white: '#FFFFFF',
 					light: '#F9F9F9',
-					dark: '#2A2A2A'
+					dark: '#2A2A2A',
+					blue: '#2E4C89'
 				}
 			},
 			borderRadius: {
@@ -99,6 +104,10 @@ export default {
 				'pulse-subtle': {
 					'0%, 100%': { opacity: '1' },
 					'50%': { opacity: '0.7' }
+				},
+				float: {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' }
 				}
 			},
 			animation: {
@@ -107,8 +116,13 @@ export default {
 				'fade-in': 'fade-in 0.3s ease-out',
 				'fade-up': 'fade-up 0.4s ease-out',
 				'slide-in-right': 'slide-in-right 0.3s ease-out',
-				'pulse-subtle': 'pulse-subtle 2s ease-in-out infinite'
-			}
+				'pulse-subtle': 'pulse-subtle 2s ease-in-out infinite',
+				'float': 'float 6s ease-in-out infinite'
+			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'maple-pattern': "url('/maple-pattern.svg')",
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
