@@ -1,7 +1,7 @@
 
 import Layout from '@/components/layout/Layout';
 import { Card, CardContent } from '@/components/ui/card';
-import { MapleLeaf, Leaf, Heart, DollarSign, Package } from 'lucide-react';
+import { Leaf, Heart, DollarSign, Package } from 'lucide-react';
 
 const About = () => {
   return (
@@ -29,7 +29,7 @@ const About = () => {
                 <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
                   {[
                     {
-                      icon: <MapleLeaf className="h-6 w-6 text-canada-red" />,
+                      icon: <Leaf className="h-6 w-6 text-canada-red" />,
                       title: "Canadian Pride",
                       description: "Promoting and supporting Canadian-made products."
                     },
