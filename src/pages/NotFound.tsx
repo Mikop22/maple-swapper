@@ -2,11 +2,12 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 
 const NotFound = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.error(
@@ -22,8 +23,8 @@ const NotFound = () => {
         <p className="text-2xl text-gray-600 dark:text-gray-300 mb-8 text-center max-w-md">
           Oops! We couldn't find the page you're looking for.
         </p>
-        <Button asChild size="lg">
-          <Link to="/">Return to Home</Link>
+        <Button size="lg" onClick={() => navigate('/')}>
+          Return to Home
         </Button>
       </div>
     </Layout>

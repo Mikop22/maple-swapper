@@ -5,8 +5,8 @@ import GroceryListInput from '@/components/scan/GroceryListInput';
 import AlternativeMatch from '@/components/common/AlternativeMatch';
 import { getAlternativesForList, findProductByName, Product } from '@/data/products';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { InfoIcon, ArrowLeft, CheckCircle, XCircle, Leaf, ThumbsUp, ThumbsDown } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { InfoIcon, ArrowLeft, CheckCircle, XCircle, Leaf } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { analyzeGroceryList } from '@/lib/gemini';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -29,6 +29,7 @@ const Scan = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [results, setResults] = useState<ResultItem[] | null>(null);
   const [geminiAnalysis, setGeminiAnalysis] = useState<GeminiAnalysis | null>(null);
+  const navigate = useNavigate();
   
   const handleGroceryListSubmit = async (items: string[]) => {
     setIsProcessing(true);
@@ -85,7 +86,19 @@ const Scan = () => {
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {brands.map((brand, index) => (
             <li key={index} className="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-800 rounded-md">
-              <Icon className={`h-4 w-4 ${iconColor} bg-white dark:bg-gray-900 rounded-full p-0.5`} />
+              {/* Display the brand logo or icon here */}
+              <div className="w-6 h-6 bg-white dark:bg-gray-900 rounded-full flex items-center justify-center overflow-hidden">
+                <img 
+                  src={`/brands/${brand.toLowerCase().replace(/\s+/g, '-')}.png`} 
+                  alt={brand}
+                  className="w-5 h-5 object-contain"
+                  onError={(e) => {
+                    // Fallback to showing the first letter if image doesn't load
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.parentElement!.innerHTML = brand.charAt(0).toUpperCase();
+                  }}
+                />
+              </div>
               <span>{brand}</span>
             </li>
           ))}
@@ -98,14 +111,18 @@ const Scan = () => {
     <Layout className="py-12 px-4 md:px-6">
       <div className="container max-w-4xl mx-auto">
         <div className="mb-8">
-          <Link to="/" className="inline-flex items-center text-gray-500 hover:text-gray-700 mb-4">
+          <Button 
+            variant="ghost" 
+            onClick={() => navigate('/')} 
+            className="inline-flex items-center text-gray-500 hover:text-gray-700 mb-4 px-0"
+          >
             <ArrowLeft className="h-4 w-4 mr-1" />
             <span>Back to Home</span>
-          </Link>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+          </Button>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white animate-fade-in">
             Scan Your Grocery List
           </h1>
-          <p className="text-gray-600 dark:text-gray-300 mt-2">
+          <p className="text-gray-600 dark:text-gray-300 mt-2 animate-fade-in" style={{ animationDelay: '0.1s' }}>
             Enter your list of American products to find Canadian alternatives
           </p>
         </div>
@@ -120,10 +137,10 @@ const Scan = () => {
         {results && results.length > 0 && (
           <div className="mt-8 animate-fade-in space-y-10">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2 animate-fade-in">
                 Here's Your Canadian Grocery List
               </h2>
-              <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.1s' }}>
                 We've analyzed your list using Google Gemini AI and found Canadian alternatives for your American products.
               </p>
             </div>
@@ -132,14 +149,14 @@ const Scan = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
                 <BrandList 
                   brands={geminiAnalysis.brandsToAvoid} 
-                  icon={ThumbsDown} 
+                  icon={XCircle} 
                   title="Brands to Avoid" 
                   description="American brands that may have different ingredients or standards"
                   iconColor="bg-canada-red" 
                 />
                 <BrandList 
                   brands={geminiAnalysis.brandsToLookFor} 
-                  icon={ThumbsUp} 
+                  icon={CheckCircle} 
                   title="Brands to Look For" 
                   description="Canadian alternatives with local ingredients and standards"
                   iconColor="bg-canada-blue" 
@@ -158,7 +175,7 @@ const Scan = () => {
             )}
             
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2 animate-fade-in">
                 <Leaf className="h-5 w-5 text-canada-red" />
                 <span>Product Alternatives</span>
               </h3>
