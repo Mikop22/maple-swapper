@@ -3,7 +3,7 @@ import { Product } from '@/data/products';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import ProductCard from './ProductCard';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, CheckCircle, XCircle } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -19,9 +19,13 @@ const AlternativeMatch = ({
   originalName 
 }: AlternativeMatchProps) => {
   const [expanded, setExpanded] = useState(false);
+  const hasAlternatives = canadianAlternatives.length > 0;
   
   return (
-    <Card className="overflow-hidden mb-6 animate-fade-up">
+    <Card className={cn(
+      "overflow-hidden animate-fade-up border-l-4", 
+      hasAlternatives ? "border-l-green-500" : "border-l-red-500"
+    )}>
       <CardContent className="p-4 md:p-6">
         <div className="flex flex-col space-y-4">
           <div className="flex flex-col md:flex-row md:items-center gap-4">
@@ -36,9 +40,14 @@ const AlternativeMatch = ({
                     />
                   </div>
                   <div>
-                    <h3 className="font-medium text-gray-900 dark:text-gray-100">
-                      {americanProduct.name}
-                    </h3>
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-medium text-gray-900 dark:text-gray-100">
+                        {americanProduct.name}
+                      </h3>
+                      <span className="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-xs rounded-full">
+                        US
+                      </span>
+                    </div>
                     <p className="text-sm text-gray-500 dark:text-gray-400">
                       {americanProduct.brand}
                     </p>
@@ -64,10 +73,13 @@ const AlternativeMatch = ({
             </div>
             
             <div className="flex-1">
-              {canadianAlternatives.length > 0 ? (
+              {hasAlternatives ? (
                 <div className="flex flex-col">
                   <div className="flex items-start gap-4">
-                    <div className="w-16 h-16 rounded-md overflow-hidden flex-shrink-0 border border-gray-100 dark:border-gray-800">
+                    <div className="w-16 h-16 rounded-md overflow-hidden flex-shrink-0 border border-gray-100 dark:border-gray-800 relative">
+                      <span className="absolute top-0 right-0 bg-green-500 p-0.5 rounded-bl-md">
+                        <CheckCircle className="h-3 w-3 text-white" />
+                      </span>
                       <img 
                         src={canadianAlternatives[0].image}
                         alt={canadianAlternatives[0].name}
@@ -75,9 +87,14 @@ const AlternativeMatch = ({
                       />
                     </div>
                     <div>
-                      <h3 className="font-medium text-gray-900 dark:text-gray-100">
-                        {canadianAlternatives[0].name}
-                      </h3>
+                      <div className="flex items-center gap-2">
+                        <h3 className="font-medium text-gray-900 dark:text-gray-100">
+                          {canadianAlternatives[0].name}
+                        </h3>
+                        <span className="px-2 py-0.5 bg-red-50 dark:bg-red-900/20 text-canada-red text-xs rounded-full border border-canada-red/20">
+                          Canadian
+                        </span>
+                      </div>
                       <p className="text-sm text-gray-500 dark:text-gray-400">
                         {canadianAlternatives[0].brand}
                       </p>
@@ -96,9 +113,10 @@ const AlternativeMatch = ({
                 </div>
               ) : (
                 <div className="flex items-center h-16">
-                  <p className="text-gray-500 dark:text-gray-400">
-                    No Canadian alternatives found
-                  </p>
+                  <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
+                    <XCircle className="h-4 w-4 text-red-500" />
+                    <p>No Canadian alternatives found</p>
+                  </div>
                 </div>
               )}
             </div>
