@@ -189,3 +189,39 @@ export const getAlternativesForList = (productNames: string[]): Record<string, P
   
   return results;
 };
+
+// Export variables for external modification (for CSV import)
+export let _americanProducts = americanProducts;
+export let _canadianAlternatives = canadianAlternatives;
+export let _alternatives = alternatives;
+
+// Update the product data from CSV import
+export const updateProductData = (
+  newAmericanProducts: Product[],
+  newCanadianAlternatives: Product[],
+  newAlternatives: Record<string, string[]>
+) => {
+  // Clear existing arrays and update with new data
+  _americanProducts.length = 0;
+  _canadianAlternatives.length = 0;
+  
+  // Add new items
+  _americanProducts.push(...newAmericanProducts);
+  _canadianAlternatives.push(...newCanadianAlternatives);
+  
+  // Update alternatives mapping
+  Object.keys(_alternatives).forEach(key => {
+    delete _alternatives[key];
+  });
+  
+  Object.keys(newAlternatives).forEach(key => {
+    _alternatives[key] = newAlternatives[key];
+  });
+  
+  // Return the updated data
+  return {
+    americanProducts: _americanProducts,
+    canadianAlternatives: _canadianAlternatives,
+    alternatives: _alternatives
+  };
+};
