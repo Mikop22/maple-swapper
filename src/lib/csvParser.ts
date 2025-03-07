@@ -1,4 +1,3 @@
-
 import { Product } from '@/data/products';
 
 export interface CSVProductRow {
@@ -93,4 +92,36 @@ export const loadDefaultCSVData = async (): Promise<{
       alternatives: {}
     };
   }
+};
+
+// Function to handle CSV file upload
+export const handleCSVUpload = async (file: File): Promise<{
+  americanProducts: Product[], 
+  canadianAlternatives: Product[],
+  alternatives: Record<string, string[]>
+}> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    
+    reader.onload = (event) => {
+      try {
+        const csvData = event.target?.result as string;
+        if (!csvData) {
+          reject(new Error('Failed to read CSV file'));
+          return;
+        }
+        
+        const parsedData = parseCSVToProducts(csvData);
+        resolve(parsedData);
+      } catch (error) {
+        reject(error);
+      }
+    };
+    
+    reader.onerror = () => {
+      reject(new Error('Error reading file'));
+    };
+    
+    reader.readAsText(file);
+  });
 };
