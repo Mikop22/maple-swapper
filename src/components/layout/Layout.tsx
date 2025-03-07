@@ -1,6 +1,7 @@
 
 import { ReactNode } from 'react';
 import Header from './Header';
+import PageTransition from './PageTransition';
 import { cn } from '@/lib/utils';
 
 interface LayoutProps {
@@ -13,7 +14,9 @@ const Layout = ({ children, className }: LayoutProps) => {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className={cn("flex-1 pt-20", className)}>
-        {children}
+        <PageTransition>
+          {children}
+        </PageTransition>
       </main>
     </div>
   );
