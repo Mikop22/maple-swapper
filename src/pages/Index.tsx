@@ -54,7 +54,7 @@ const Index = () => {
               <div className="w-full max-w-3xl h-64 relative">
                 <div className="absolute inset-2/4 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-primary/10 rounded-full blur-3xl"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-64 h-64 relative animate-float">
+                  <div className="w-64 h-64 relative animate-float scale-in-item">
                     <div className="absolute top-0 left-0 w-40 h-40 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4 -rotate-6 transform-gpu">
                       <div className="flex items-center gap-3 mb-3">
                         <div className="w-8 h-8 bg-red-100 rounded-md flex items-center justify-center">
@@ -88,10 +88,10 @@ const Index = () => {
       <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4 fade-cascade-1">
               How It Works
             </h2>
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="text-gray-600 dark:text-gray-300 fade-cascade-2">
               Three simple steps to find Canadian alternatives
             </p>
           </div>
@@ -119,11 +119,7 @@ const Index = () => {
             ].map((step, index) => (
               <Card 
                 key={index} 
-                className={cn(
-                  "border-none shadow-md hover:shadow-lg transition-all card-hover",
-                  "animate-fade-up"
-                )}
-                style={{ animationDelay: step.delay }}
+                className="border-none shadow-md hover:shadow-lg transition-all card-hover card-stagger"
               >
                 <CardContent className="p-6 text-center">
                   <div className="w-14 h-14 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto mb-5">
@@ -140,12 +136,12 @@ const Index = () => {
             ))}
           </div>
 
-          <div className="mt-20 max-w-4xl mx-auto bg-secondary rounded-2xl p-8 text-center">
-            <h3 className="text-2xl font-bold mb-4">Ready to find Canadian alternatives?</h3>
-            <p className="mb-6 max-w-2xl mx-auto">Support local businesses and avoid tariffs by making smarter choices with MapleSwap.</p>
+          <div className="mt-20 max-w-4xl mx-auto bg-secondary rounded-2xl p-8 text-center scale-in-item" style={{"--item-delay": "0.4s"} as any}>
+            <h3 className="text-2xl font-bold mb-4 fade-cascade-3">Ready to find Canadian alternatives?</h3>
+            <p className="mb-6 max-w-2xl mx-auto fade-cascade-4">Support local businesses and avoid tariffs by making smarter choices with MapleSwap.</p>
             <Button 
               size="lg" 
-              className="gap-2 px-8 h-12 rounded-full shadow-lg shadow-primary/20"
+              className="gap-2 px-8 h-12 rounded-full shadow-lg shadow-primary/20 fade-cascade-5"
               onClick={() => navigate('/scan')}
             >
               Get Started Now
