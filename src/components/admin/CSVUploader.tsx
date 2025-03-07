@@ -21,10 +21,10 @@ const CSVUploader = () => {
 
     setIsUploading(true);
     try {
-      const { americanProducts, canadianAlternatives, alternatives } = await handleCSVUpload(file);
+      const { americanProducts, canadianAlternatives } = await handleCSVUpload(file);
       
       // Update the products data
-      updateProductData(americanProducts, canadianAlternatives, alternatives);
+      updateProductData(americanProducts, canadianAlternatives);
       
       toast.success(`Successfully imported ${americanProducts.length} products`);
     } catch (error) {

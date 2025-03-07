@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Layout from '@/components/layout/Layout';
 import GroceryListInput from '@/components/scan/GroceryListInput';
 import AlternativeMatch from '@/components/common/AlternativeMatch';
-import { getAlternativesForList, findProductByName, Product } from '@/data/products';
+import { findProductByName, getCanadianProducts, Product } from '@/data/products';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { InfoIcon, ArrowLeft, CheckCircle, XCircle, Leaf } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -35,15 +35,21 @@ const Scan = () => {
     setIsProcessing(true);
     
     try {
-      // Get product alternatives
-      const alternatives = getAlternativesForList(items);
+      // Find Canadian alternatives
+      const canadianProducts = getCanadianProducts();
       
       const processedResults: ResultItem[] = items.map(name => {
         const americanProduct = findProductByName(name);
+        
+        // Simple logic to find Canadian alternatives based on category
+        const canadianAlternatives = americanProduct 
+          ? canadianProducts.filter(p => p.category === americanProduct.category)
+          : [];
+        
         return {
           originalName: name,
           americanProduct,
-          canadianAlternatives: alternatives[name] || []
+          canadianAlternatives
         };
       });
       
