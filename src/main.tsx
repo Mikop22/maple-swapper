@@ -9,11 +9,11 @@ import { updateProductData } from './data/products';
 async function initApp() {
   try {
     // Try to load data from CSV
-    const { americanProducts, canadianAlternatives, alternatives } = await loadDefaultCSVData();
+    const { americanProducts, canadianAlternatives } = await loadDefaultCSVData();
     
     // If we have data from CSV, update the product data
     if (americanProducts.length > 0) {
-      updateProductData(americanProducts, canadianAlternatives, alternatives);
+      updateProductData(americanProducts, canadianAlternatives);
       console.log(`Loaded ${americanProducts.length} products from CSV`);
     } else {
       console.log('No CSV data loaded, using default product data');

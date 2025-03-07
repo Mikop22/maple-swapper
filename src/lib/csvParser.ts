@@ -13,8 +13,7 @@ export interface CSVProductRow {
 
 export const parseCSVToProducts = (csvData: string): { 
   americanProducts: Product[], 
-  canadianAlternatives: Product[],
-  alternatives: Record<string, string[]>
+  canadianAlternatives: Product[]
 } => {
   const lines = csvData.split('\n');
   const headers = lines[0].split(',');
@@ -24,7 +23,6 @@ export const parseCSVToProducts = (csvData: string): {
   
   const americanProducts: Product[] = [];
   const canadianAlternatives: Product[] = [];
-  const alternatives: Record<string, string[]> = {};
   
   rows.forEach((row, index) => {
     const columns = row.split(',');
@@ -61,23 +59,18 @@ export const parseCSVToProducts = (csvData: string): {
       price: canadianPrice,
       description: `Canadian ${category.toLowerCase()} product.`
     });
-    
-    // Map the alternative
-    alternatives[americanId] = [canadianId];
   });
   
   return {
     americanProducts,
-    canadianAlternatives,
-    alternatives
+    canadianAlternatives
   };
 };
 
 // Function to load default CSV data
 export const loadDefaultCSVData = async (): Promise<{
   americanProducts: Product[], 
-  canadianAlternatives: Product[],
-  alternatives: Record<string, string[]>
+  canadianAlternatives: Product[]
 }> => {
   try {
     // Since the CSV file doesn't exist yet, we'll skip trying to import it
@@ -85,8 +78,7 @@ export const loadDefaultCSVData = async (): Promise<{
     console.log('CSV file not available yet, using default product data instead');
     return {
       americanProducts: [],
-      canadianAlternatives: [],
-      alternatives: {}
+      canadianAlternatives: []
     };
     
     // This is the code we'll use once the CSV file is available:
@@ -98,8 +90,7 @@ export const loadDefaultCSVData = async (): Promise<{
     // Return empty data if CSV file doesn't exist yet
     return {
       americanProducts: [],
-      canadianAlternatives: [],
-      alternatives: {}
+      canadianAlternatives: []
     };
   }
 };
@@ -107,8 +98,7 @@ export const loadDefaultCSVData = async (): Promise<{
 // Function to handle CSV file upload
 export const handleCSVUpload = async (file: File): Promise<{
   americanProducts: Product[], 
-  canadianAlternatives: Product[],
-  alternatives: Record<string, string[]>
+  canadianAlternatives: Product[]
 }> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();

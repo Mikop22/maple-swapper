@@ -1,3 +1,4 @@
+
 export interface Product {
   id: string;
   name: string;
@@ -136,20 +137,9 @@ const initialCanadianAlternatives: Product[] = [
   }
 ];
 
-// Initial alternatives map
-const initialAlternatives: Record<string, string[]> = {
-  'a1': ['c1'],
-  'a2': ['c2'],
-  'a3': ['c3'],
-  'a4': ['c4'],
-  'a5': ['c5'],
-  'a6': ['c6'],
-};
-
 // Use mutable variables that can be updated by the CSV import
 let americanProducts: Product[] = [...initialAmericanProducts];
 let canadianAlternatives: Product[] = [...initialCanadianAlternatives];
-let alternatives: Record<string, string[]> = {...initialAlternatives};
 
 // Get all American products
 export const getAmericanProducts = (): Product[] => {
@@ -170,54 +160,22 @@ export const findProductByName = (name: string): Product | undefined => {
   );
 };
 
-// Get Canadian alternatives for an American product
-export const getAlternativesForProduct = (productId: string): Product[] => {
-  const alternativeIds = alternatives[productId] || [];
-  return alternativeIds.map(id => 
-    canadianAlternatives.find(product => product.id === id)
-  ).filter(product => product !== undefined) as Product[];
-};
-
-// Get Canadian alternatives for a list of American products
-export const getAlternativesForList = (productNames: string[]): Record<string, Product[]> => {
-  const results: Record<string, Product[]> = {};
-  
-  productNames.forEach(name => {
-    const product = findProductByName(name);
-    if (product) {
-      results[name] = getAlternativesForProduct(product.id);
-    } else {
-      results[name] = [];
-    }
-  });
-  
-  return results;
-};
-
 // Update the product data from CSV import
 export const updateProductData = (
   newAmericanProducts: Product[],
-  newCanadianAlternatives: Product[],
-  newAlternatives: Record<string, string[]>
+  newCanadianAlternatives: Product[]
 ) => {
   // Clear existing data
   americanProducts = [];
   canadianAlternatives = [];
-  alternatives = {};
   
   // Add new items
   americanProducts.push(...newAmericanProducts);
   canadianAlternatives.push(...newCanadianAlternatives);
   
-  // Update alternatives mapping
-  Object.keys(newAlternatives).forEach(key => {
-    alternatives[key] = newAlternatives[key];
-  });
-  
   // Return the updated data
   return {
     americanProducts,
-    canadianAlternatives,
-    alternatives
+    canadianAlternatives
   };
 };
