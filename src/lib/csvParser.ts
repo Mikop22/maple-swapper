@@ -1,3 +1,4 @@
+
 import { Product } from '@/data/products';
 
 export interface CSVProductRow {
@@ -79,12 +80,12 @@ export const loadDefaultCSVData = async (): Promise<{
   alternatives: Record<string, string[]>
 }> => {
   try {
-    // Import the CSV file (Vite supports importing text files)
-    const csvModule = await import('/src/data/products.csv?raw');
+    // Changed the import path to be relative to the project root
+    const csvModule = await import('@/data/products.csv?raw');
     const csvData = csvModule.default;
     return parseCSVToProducts(csvData);
   } catch (error) {
-    console.error('Error loading default CSV data:', error);
+    console.warn('CSV file not found, using default product data instead:', error);
     // Return empty data if CSV file doesn't exist yet
     return {
       americanProducts: [],

@@ -15,6 +15,8 @@ async function initApp() {
     if (americanProducts.length > 0) {
       updateProductData(americanProducts, canadianAlternatives, alternatives);
       console.log(`Loaded ${americanProducts.length} products from CSV`);
+    } else {
+      console.log('No CSV data loaded, using default product data');
     }
   } catch (error) {
     console.error('Failed to load CSV data:', error);
