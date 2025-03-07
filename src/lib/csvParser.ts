@@ -80,10 +80,19 @@ export const loadDefaultCSVData = async (): Promise<{
   alternatives: Record<string, string[]>
 }> => {
   try {
-    // Changed the import path to be relative to the project root
-    const csvModule = await import('@/data/products.csv?raw');
-    const csvData = csvModule.default;
-    return parseCSVToProducts(csvData);
+    // Since the CSV file doesn't exist yet, we'll skip trying to import it
+    // and just return empty arrays which will make the app fall back to default products
+    console.log('CSV file not available yet, using default product data instead');
+    return {
+      americanProducts: [],
+      canadianAlternatives: [],
+      alternatives: {}
+    };
+    
+    // This is the code we'll use once the CSV file is available:
+    // const csvModule = await import('@/data/products.csv?raw');
+    // const csvData = csvModule.default;
+    // return parseCSVToProducts(csvData);
   } catch (error) {
     console.warn('CSV file not found, using default product data instead:', error);
     // Return empty data if CSV file doesn't exist yet
