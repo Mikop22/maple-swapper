@@ -73,24 +73,24 @@ export const parseCSVToProducts = (csvData: string): {
   };
 };
 
-// Helper function to handle CSV file uploads
-export const handleCSVUpload = async (file: File): Promise<{
+// Function to load default CSV data
+export const loadDefaultCSVData = async (): Promise<{
   americanProducts: Product[], 
   canadianAlternatives: Product[],
   alternatives: Record<string, string[]>
 }> => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      try {
-        const csvData = event.target?.result as string;
-        const result = parseCSVToProducts(csvData);
-        resolve(result);
-      } catch (error) {
-        reject(error);
-      }
+  try {
+    // Import the CSV file (Vite supports importing text files)
+    const csvModule = await import('/src/data/products.csv?raw');
+    const csvData = csvModule.default;
+    return parseCSVToProducts(csvData);
+  } catch (error) {
+    console.error('Error loading default CSV data:', error);
+    // Return empty data if CSV file doesn't exist yet
+    return {
+      americanProducts: [],
+      canadianAlternatives: [],
+      alternatives: {}
     };
-    reader.onerror = (error) => reject(error);
-    reader.readAsText(file);
-  });
+  }
 };

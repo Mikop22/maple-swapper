@@ -1,4 +1,3 @@
-
 export interface Product {
   id: string;
   name: string;
@@ -10,8 +9,8 @@ export interface Product {
   description?: string;
 }
 
-// Sample data for demonstration
-const americanProducts: Product[] = [
+// Initial sample data for demonstration (will be replaced by CSV data when available)
+const initialAmericanProducts: Product[] = [
   {
     id: 'a1',
     name: 'Wonder Bread',
@@ -74,7 +73,7 @@ const americanProducts: Product[] = [
   }
 ];
 
-const canadianAlternatives: Product[] = [
+const initialCanadianAlternatives: Product[] = [
   {
     id: 'c1',
     name: 'D\'Italiano Bread',
@@ -137,8 +136,8 @@ const canadianAlternatives: Product[] = [
   }
 ];
 
-// Map American products to their Canadian alternatives
-const alternatives: Record<string, string[]> = {
+// Initial alternatives map
+const initialAlternatives: Record<string, string[]> = {
   'a1': ['c1'],
   'a2': ['c2'],
   'a3': ['c3'],
@@ -146,6 +145,11 @@ const alternatives: Record<string, string[]> = {
   'a5': ['c5'],
   'a6': ['c6'],
 };
+
+// Use mutable variables that can be updated by the CSV import
+let americanProducts: Product[] = [...initialAmericanProducts];
+let canadianAlternatives: Product[] = [...initialCanadianAlternatives];
+let alternatives: Record<string, string[]> = {...initialAlternatives};
 
 // Get all American products
 export const getAmericanProducts = (): Product[] => {
@@ -190,38 +194,30 @@ export const getAlternativesForList = (productNames: string[]): Record<string, P
   return results;
 };
 
-// Export variables for external modification (for CSV import)
-export let _americanProducts = americanProducts;
-export let _canadianAlternatives = canadianAlternatives;
-export let _alternatives = alternatives;
-
 // Update the product data from CSV import
 export const updateProductData = (
   newAmericanProducts: Product[],
   newCanadianAlternatives: Product[],
   newAlternatives: Record<string, string[]>
 ) => {
-  // Clear existing arrays and update with new data
-  _americanProducts.length = 0;
-  _canadianAlternatives.length = 0;
+  // Clear existing data
+  americanProducts = [];
+  canadianAlternatives = [];
+  alternatives = {};
   
   // Add new items
-  _americanProducts.push(...newAmericanProducts);
-  _canadianAlternatives.push(...newCanadianAlternatives);
+  americanProducts.push(...newAmericanProducts);
+  canadianAlternatives.push(...newCanadianAlternatives);
   
   // Update alternatives mapping
-  Object.keys(_alternatives).forEach(key => {
-    delete _alternatives[key];
-  });
-  
   Object.keys(newAlternatives).forEach(key => {
-    _alternatives[key] = newAlternatives[key];
+    alternatives[key] = newAlternatives[key];
   });
   
   // Return the updated data
   return {
-    americanProducts: _americanProducts,
-    canadianAlternatives: _canadianAlternatives,
-    alternatives: _alternatives
+    americanProducts,
+    canadianAlternatives,
+    alternatives
   };
 };

@@ -38,11 +38,11 @@ const Browse = () => {
   return (
     <Layout className="py-12 px-4 md:px-6">
       <div className="container mx-auto">
-        <div className="max-w-2xl mx-auto text-center mb-10">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+        <div className="max-w-2xl mx-auto text-center mb-10 animate-fade-in">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4 animate-fade-in">
             Browse Alternatives
           </h1>
-          <p className="text-gray-600 dark:text-gray-300">
+          <p className="text-gray-600 dark:text-gray-300 animate-fade-in">
             Explore Canadian-made alternatives to popular American products
           </p>
         </div>
@@ -74,7 +74,7 @@ const Browse = () => {
           </Tabs>
           
           {searchTerm && displayedProducts.length === 0 ? (
-            <div className="text-center py-12">
+            <div className="text-center py-12 animate-fade-in">
               <p className="text-gray-500 dark:text-gray-400">
                 No products found matching "{searchTerm}"
               </p>
@@ -89,7 +89,7 @@ const Browse = () => {
           ) : (
             <>
               {activeTab === 'canadian' && displayedProducts.length > 0 && (
-                <div className="bg-canada-red/5 rounded-lg p-4 mb-8 flex items-center gap-3 border border-canada-red/20">
+                <div className="bg-canada-red/5 rounded-lg p-4 mb-8 flex items-center gap-3 border border-canada-red/20 animate-fade-in">
                   <Sparkles className="h-5 w-5 text-canada-red flex-shrink-0" />
                   <p className="text-sm">
                     <span className="font-medium">Supporting local:</span> By choosing Canadian products, you're supporting local businesses and avoiding tariffs.

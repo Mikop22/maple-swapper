@@ -19,8 +19,8 @@ const NotFound = () => {
   return (
     <Layout>
       <div className="min-h-[70vh] flex flex-col items-center justify-center px-6 py-16 animate-fade-in">
-        <h1 className="text-7xl font-bold text-gray-900 dark:text-gray-100 mb-4">404</h1>
-        <p className="text-2xl text-gray-600 dark:text-gray-300 mb-8 text-center max-w-md">
+        <h1 className="text-7xl font-bold text-gray-900 dark:text-gray-100 mb-4 animate-fade-in">404</h1>
+        <p className="text-2xl text-gray-600 dark:text-gray-300 mb-8 text-center max-w-md animate-fade-in">
           Oops! We couldn't find the page you're looking for.
         </p>
         <Button size="lg" onClick={() => navigate('/')}>
