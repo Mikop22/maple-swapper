@@ -16,20 +16,20 @@ const Index = () => {
         
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center px-3 py-1 rounded-full bg-canada-red/10 text-canada-red mb-6 animate-fade-in">
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-canada-red/10 text-canada-red mb-6 fade-up-item">
               <Leaf className="h-4 w-4 mr-2" />
               <span className="text-sm font-medium">Combat US tariffs with Canadian alternatives</span>
             </div>
             
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight animate-fade-up [animation-delay:0.1s]">
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight fade-up-item">
               <span className="gradient-text">Find Canadian alternatives</span> to American products
             </h1>
             
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed animate-fade-up [animation-delay:0.2s]">
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed fade-up-delayed">
               Upload your grocery list and instantly discover Canadian-made alternatives to help you avoid US tariffs while supporting local businesses.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up [animation-delay:0.3s]">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center fade-up-more-delayed">
               <Button 
                 size="lg" 
                 className="gap-2 px-6 h-12 rounded-full shadow-lg shadow-primary/20"

@@ -34,7 +34,9 @@ const PageTransition = ({ children, className }: PageTransitionProps) => {
         className
       )}
     >
-      {children}
+      <div className="content-wrapper">
+        {children}
+      </div>
     </div>
   );
 };
