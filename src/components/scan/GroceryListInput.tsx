@@ -13,6 +13,7 @@ import {
   X
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface GroceryListInputProps {
   onSubmit: (items: string[]) => void;
@@ -20,6 +21,7 @@ interface GroceryListInputProps {
 }
 
 const GroceryListInput = ({ onSubmit, isProcessing }: GroceryListInputProps) => {
+  const { t } = useLanguage();
   const [inputMethod, setInputMethod] = useState<'text' | 'upload' | 'camera'>('text');
   const [groceryItems, setGroceryItems] = useState('');
   const [isDragging, setIsDragging] = useState(false);
@@ -68,45 +70,41 @@ const GroceryListInput = ({ onSubmit, isProcessing }: GroceryListInputProps) => 
 
   return (
     <Card className="overflow-hidden shadow-md bg-white dark:bg-gray-900 animate-fade-in">
-      <CardContent className="p-6">
-        <div className="flex space-x-3 mb-4">
+      <CardContent className="p-4 sm:p-6">
+        <div className="flex space-x-2 mb-4 overflow-x-auto pb-1 scrollbar-none">
           <Button 
             variant={inputMethod === 'text' ? 'default' : 'outline'}
             size="sm"
             onClick={() => setInputMethod('text')}
-            className="gap-1"
+            className="gap-1 whitespace-nowrap"
           >
             <FileText className="h-4 w-4" />
-            <span>Text</span>
+            <span>{t('scan.input.text')}</span>
           </Button>
           <Button 
             variant={inputMethod === 'upload' ? 'default' : 'outline'}
             size="sm"
             onClick={() => setInputMethod('upload')}
-            className="gap-1"
+            className="gap-1 whitespace-nowrap"
           >
             <Upload className="h-4 w-4" />
-            <span>Upload</span>
+            <span>{t('scan.input.upload')}</span>
           </Button>
           <Button 
             variant={inputMethod === 'camera' ? 'default' : 'outline'}
             size="sm"
             onClick={() => setInputMethod('camera')}
-            className="gap-1"
+            className="gap-1 whitespace-nowrap"
           >
             <Camera className="h-4 w-4" />
-            <span>Camera</span>
+            <span>{t('scan.input.camera')}</span>
           </Button>
         </div>
         
         {inputMethod === 'text' && (
           <div className="space-y-4">
             <Textarea 
-              placeholder="Enter your grocery list with each item on a new line: 
-Example:
-Wonder Bread
-Heinz Ketchup
-Jiffy Peanut Butter"
+              placeholder={t('scan.input.placeholder')}
               className="min-h-[150px]"
               value={groceryItems}
               onChange={(e) => setGroceryItems(e.target.value)}
@@ -117,7 +115,7 @@ Jiffy Peanut Butter"
         {inputMethod === 'upload' && (
           <div 
             className={cn(
-              "border-2 border-dashed rounded-lg p-8 text-center transition-colors",
+              "border-2 border-dashed rounded-lg p-4 sm:p-8 text-center transition-colors",
               isDragging ? "border-primary bg-primary/5" : "border-gray-200 dark:border-gray-700"
             )}
             onDragOver={handleDragOver}
@@ -139,9 +137,9 @@ Jiffy Peanut Butter"
               <div className="w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-2">
                 <Upload className="h-6 w-6 text-gray-500 dark:text-gray-400" />
               </div>
-              <h3 className="text-lg font-medium">Upload your grocery list</h3>
+              <h3 className="text-lg font-medium">{t('scan.upload.title')}</h3>
               <p className="text-sm text-gray-500 dark:text-gray-400 max-w-xs">
-                Drag and drop a file, or click to browse
+                {t('scan.upload.description')}
               </p>
               <Button 
                 variant="outline" 
@@ -149,52 +147,53 @@ Jiffy Peanut Butter"
                 className="mt-2"
                 onClick={() => fileInputRef.current?.click()}
               >
-                Select file
+                {t('scan.upload.button')}
               </Button>
             </div>
           </div>
         )}
         
         {inputMethod === 'camera' && (
-          <div className="border rounded-lg p-8 text-center">
+          <div className="border rounded-lg p-4 sm:p-8 text-center">
             <div className="flex flex-col items-center justify-center gap-2">
               <div className="w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-2">
                 <Camera className="h-6 w-6 text-gray-500 dark:text-gray-400" />
               </div>
-              <h3 className="text-lg font-medium">Take a photo of your list</h3>
+              <h3 className="text-lg font-medium">{t('scan.camera.title')}</h3>
               <p className="text-sm text-gray-500 dark:text-gray-400 max-w-xs">
-                Feature coming soon! For now, please use text input or upload.
+                {t('scan.camera.description')}
               </p>
             </div>
           </div>
         )}
         
         {groceryItems.trim().length > 0 && (
-          <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-100 dark:border-gray-800">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-4 pt-4 border-t border-gray-100 dark:border-gray-800 gap-3">
             <div className="text-sm text-gray-500 dark:text-gray-400">
-              {groceryItems.split('\n').filter(item => item.trim().length > 0).length} items
+              {t('scan.items.count').replace('{0}', groceryItems.split('\n').filter(item => item.trim().length > 0).length.toString())}
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 w-full sm:w-auto">
               <Button 
                 variant="outline" 
                 size="sm"
                 onClick={() => setGroceryItems('')}
+                className="flex-1 sm:flex-none"
               >
                 <X className="h-4 w-4 mr-1" />
-                Clear
+                {t('scan.button.clear')}
               </Button>
               <Button 
                 onClick={handleSubmit}
                 disabled={isProcessing || groceryItems.trim().length === 0}
-                className="gap-1"
+                className="gap-1 flex-1 sm:flex-none"
               >
                 {isProcessing ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
                 ) : (
                   <Search className="h-4 w-4" />
                 )}
-                <span>{isProcessing ? "Processing..." : "Find Alternatives"}</span>
-                {!isProcessing && <ArrowRight className="h-4 w-4 ml-1" />}
+                <span>{isProcessing ? t('scan.button.processing') : t('scan.button.find')}</span>
+                {!isProcessing && <ArrowRight className="h-4 w-4 ml-1 hidden sm:inline" />}
               </Button>
             </div>
           </div>
