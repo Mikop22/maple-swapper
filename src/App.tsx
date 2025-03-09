@@ -13,6 +13,7 @@ import Browse from "./pages/Browse";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 
+// Create a new query client
 const queryClient = new QueryClient();
 
 // AnimatedRoutes component to handle route transitions
