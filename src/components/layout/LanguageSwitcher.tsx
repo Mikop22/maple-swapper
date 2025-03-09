@@ -1,5 +1,5 @@
 
-import { useLanguage, Language } from '@/contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { 
   DropdownMenu,
@@ -12,7 +12,7 @@ import { Languages } from 'lucide-react';
 const LanguageSwitcher = () => {
   const { language, setLanguage, t } = useLanguage();
 
-  const languages: { value: Language; label: string }[] = [
+  const languages: { value: string; label: string }[] = [
     { value: 'en', label: 'English' },
     { value: 'fr', label: 'Français' },
   ];
