@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import ThemeToggle from './ThemeToggle';
 import LanguageSwitcher from './LanguageSwitcher';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Leaf } from 'lucide-react';
 
 const Header = () => {
   const location = useLocation();
@@ -35,6 +35,9 @@ const Header = () => {
           {/* Logo and brand */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center gap-2">
+              <span className="flex items-center justify-center w-8 h-8 rounded-md bg-gray-900 dark:bg-gray-100">
+                <Leaf className="h-5 w-5 text-white dark:text-gray-900" />
+              </span>
               <span className="text-xl font-bold text-primary">{t('app.name')}</span>
             </Link>
           </div>
