@@ -13,7 +13,7 @@ const Layout = ({ children, className }: LayoutProps) => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className={cn("flex-1 pt-20 md:pt-24", className)}>
+      <main className={cn("flex-1 pt-16 md:pt-20", className)}>
         <PageTransition>
           {children}
         </PageTransition>

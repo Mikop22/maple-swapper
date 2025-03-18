@@ -38,9 +38,9 @@ const Browse = () => {
   }
   
   return (
-    <Layout className="py-6 md:py-12 px-4 md:px-6">
+    <Layout className="py-12 md:py-16 px-4 md:px-6">
       <div className="container mx-auto">
-        <div className="max-w-2xl mx-auto text-center mb-6 md:mb-10 animate-fade-in">
+        <div className="max-w-2xl mx-auto text-center mb-6 md:mb-10 animate-fade-in pt-4">
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2 md:mb-4 animate-fade-in">
             {t('browse.title')}
           </h1>
