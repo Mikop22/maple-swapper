@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -12,7 +12,6 @@ const Header = () => {
   const location = useLocation();
   const { t } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isCanadianFlag, setIsCanadianFlag] = useState(true);
 
   const navigation = [
     { name: t('nav.home'), href: '/' },
@@ -29,15 +28,6 @@ const Header = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
-  // Animate between flags every 3 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsCanadianFlag(prev => !prev);
-    }, 3000);
-    
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <header className="fixed w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md z-40 border-b border-gray-200 dark:border-gray-800 shadow-sm">
       <div className="container mx-auto px-4 sm:px-6">
@@ -45,49 +35,9 @@ const Header = () => {
           {/* Logo and brand */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center gap-2">
-              <div className="relative w-8 h-8 rounded-md overflow-hidden">
-                {/* Canadian Flag */}
-                <div 
-                  className={cn(
-                    "absolute inset-0 w-full h-full transition-all duration-1000 ease-in-out",
-                    isCanadianFlag ? "opacity-100" : "opacity-0"
-                  )}
-                >
-                  <div className="h-full flex">
-                    <div className="w-1/4 h-full bg-canada-red"></div>
-                    <div className="w-2/4 h-full bg-white flex items-center justify-center">
-                      <div className="text-canada-red text-lg transform scale-150">&#127809;</div>
-                    </div>
-                    <div className="w-1/4 h-full bg-canada-red"></div>
-                  </div>
-                </div>
-                
-                {/* American Flag */}
-                <div 
-                  className={cn(
-                    "absolute inset-0 w-full h-full transition-all duration-1000 ease-in-out",
-                    isCanadianFlag ? "opacity-0" : "opacity-100"
-                  )}
-                >
-                  <div className="h-full flex flex-col">
-                    <div className="h-4/7 flex">
-                      <div className="w-4/12 h-full bg-canada-blue flex items-center justify-center">
-                        <span className="text-[7px] text-white">★</span>
-                      </div>
-                      <div className="w-8/12 h-full flex flex-col">
-                        {[...Array(4)].map((_, i) => (
-                          <div key={i} className="h-1/4 bg-canada-red"></div>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="h-3/7 flex flex-col">
-                      {[...Array(3)].map((_, i) => (
-                        <div key={i} className="h-1/3 bg-canada-red"></div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <span className="flex items-center justify-center w-8 h-8 rounded-md bg-gray-900 dark:bg-gray-100">
+                <Leaf className="h-5 w-5 text-white dark:text-gray-900" />
+              </span>
               <span className="text-xl font-bold text-primary">{t('app.name')}</span>
             </Link>
           </div>
