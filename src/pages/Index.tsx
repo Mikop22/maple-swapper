@@ -57,7 +57,7 @@ const Index = () => {
                 <div className="absolute inset-2/4 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-primary/10 rounded-full blur-3xl"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-48 md:w-64 h-48 md:h-64 relative animate-float scale-in-item">
-                    <div className="absolute top-0 left-0 w-32 md:w-40 h-32 md:h-40 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4 -rotate-6 transform-gpu">
+                    <div className="absolute top-0 left-0 w-32 md:w-40 h-32 md:h-40 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4 -rotate-6 transform-gpu animate-float" style={{ animationDelay: "0.1s" }}>
                       <div className="flex items-center gap-3 mb-3">
                         <div className="w-8 h-8 bg-red-100 rounded-md flex items-center justify-center">
                           <Leaf className="h-5 w-5 text-canada-red" />
@@ -68,7 +68,7 @@ const Index = () => {
                       <div className="h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full w-2/3 mb-2"></div>
                       <div className="h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full w-3/4"></div>
                     </div>
-                    <div className="absolute bottom-0 right-0 w-32 md:w-40 h-32 md:h-40 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4 rotate-6 transform-gpu">
+                    <div className="absolute bottom-0 right-0 w-32 md:w-40 h-32 md:h-40 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4 rotate-6 transform-gpu animate-float" style={{ animationDelay: "0.3s" }}>
                       <div className="flex items-center gap-3 mb-3">
                         <div className="w-8 h-8 bg-blue-100 rounded-md flex items-center justify-center">
                           <ShoppingCart className="h-5 w-5 text-blue-500" />
