@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import { analyzeGroceryList } from '@/lib/gemini';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
+import { Progress } from '@/components/ui/progress';
 
 interface ResultItem {
   originalName: string;
@@ -29,6 +30,7 @@ const Scan = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [results, setResults] = useState<ResultItem[] | null>(null);
   const [geminiAnalysis, setGeminiAnalysis] = useState<GeminiAnalysis | null>(null);
+  const [canadianScore, setCanadianScore] = useState<number>(0);
   const navigate = useNavigate();
   
   const handleGroceryListSubmit = async (items: string[]) => {
@@ -56,8 +58,14 @@ const Scan = () => {
       // Get Gemini AI analysis
       const analysis = await analyzeGroceryList(items);
       
+      // Calculate Canadian score based on items with alternatives
+      const itemsWithAlternatives = processedResults.filter(r => r.canadianAlternatives.length > 0).length;
+      const totalItems = processedResults.length;
+      const calculatedScore = totalItems > 0 ? Math.round((itemsWithAlternatives / totalItems) * 100) : 0;
+      
       setResults(processedResults);
       setGeminiAnalysis(analysis);
+      setCanadianScore(calculatedScore);
     } catch (error) {
       console.error('Error processing grocery list:', error);
     } finally {
@@ -113,6 +121,20 @@ const Scan = () => {
     </Card>
   );
   
+  const getCanadianScoreLabel = (score: number): string => {
+    if (score < 30) return "Mostly American";
+    if (score < 60) return "Mixed";
+    if (score < 85) return "Primarily Canadian";
+    return "Very Canadian";
+  };
+  
+  const getScoreColor = (score: number): string => {
+    if (score < 30) return "bg-red-500";
+    if (score < 60) return "bg-amber-500";
+    if (score < 85) return "bg-blue-500";
+    return "bg-canada-blue";
+  };
+  
   return (
     <Layout className="py-12 px-4 md:px-6">
       <div className="container max-w-4xl mx-auto">
@@ -149,6 +171,25 @@ const Scan = () => {
               <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.1s' }}>
                 We've analyzed your list using Google Gemini AI and found Canadian alternatives for your American products.
               </p>
+            </div>
+            
+            {/* Canadian Score Progress Bar */}
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md border border-gray-100 dark:border-gray-700 animate-fade-in">
+              <div className="flex justify-between items-center mb-2">
+                <h3 className="text-lg font-medium">Canadian Score</h3>
+                <span className="text-lg font-bold">{canadianScore}%</span>
+              </div>
+              <div className="mb-2">
+                <Progress 
+                  value={canadianScore} 
+                  className="h-3" 
+                />
+              </div>
+              <div className="flex justify-between text-sm text-gray-500 dark:text-gray-400">
+                <span>🇺🇸 American</span>
+                <span className="font-medium">{getCanadianScoreLabel(canadianScore)}</span>
+                <span>🇨🇦 Canadian</span>
+              </div>
             </div>
             
             {geminiAnalysis && (
@@ -225,6 +266,7 @@ const Scan = () => {
                 onClick={() => {
                   setResults(null);
                   setGeminiAnalysis(null);
+                  setCanadianScore(0);
                 }}
                 className="px-8"
               >
