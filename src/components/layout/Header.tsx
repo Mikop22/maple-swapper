@@ -34,11 +34,15 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo and brand */}
           <div className="flex items-center">
-            <Link to="/" className="flex items-center gap-2">
-              <span className="flex items-center justify-center w-8 h-8 rounded-md bg-gray-900 dark:bg-gray-100">
-                <Leaf className="h-5 w-5 text-white dark:text-gray-900" />
+            <Link to="/" className="flex items-center gap-2 group">
+              <span className="relative flex items-center justify-center w-8 h-8 rounded-md bg-gray-900 dark:bg-gray-100 overflow-hidden">
+                <Leaf className="absolute h-5 w-5 text-white dark:text-gray-900 animate-pulse-subtle" />
+                <span className="absolute inset-0 bg-gradient-to-r from-canada-red to-canada-blue opacity-0 group-hover:opacity-80 transition-opacity duration-700"></span>
+                <span className="absolute h-full w-full bg-canada-red/20 dark:bg-canada-red/30 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700"></span>
               </span>
-              <span className="text-xl font-bold text-primary">{t('app.name')}</span>
+              <span className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 group-hover:from-canada-red group-hover:to-canada-blue transition-all duration-700">
+                {t('app.name')}
+              </span>
             </Link>
           </div>
 
