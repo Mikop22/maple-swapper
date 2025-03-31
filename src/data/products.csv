@@ -1,0 +1,88 @@
+Category,American Product,American Product Price (CAD),Canadian Alternative,Canadian Alternative Price (CAD),Image Path (American),Image Path (Canadian)
+Dairy Products,Kraft Singles Cheese Slices (450g),5.99,Black Diamond Cheese Slices (450g),5.49,products/us/kraftsingles.png,products/can/blackdiamond.png
+Dairy Products,Great Value Butter (454g),6.99,Compliments Butter (454g),6.49,products/us/greatvaluebutter.png,products/can/complimentsbutter.png
+Dairy Products,Yoplait Yogurt (650g),4.49,Liberté Yogurt (650g),4.29,products/us/yoplait.png,products/can/libert.png
+Dairy Products,Land O'Lakes Butter (454g),6.99,Gay Lea Butter (454g),6.49,products/us/landolakes.png,products/can/gayleabutter.png
+Dairy Products,Horizon Organic Milk (2L),6.49,Organic Meadow Milk (2L),5.99,products/us/horizonmilk.png,products/can/organicmeadow.png
+Dairy Products,Chobani Greek Yogurt (4x100g),5.49,Oikos Greek Yogurt (4x100g),5.29,products/us/chobani.png,products/can/oikos.png
+Dairy Products,International Delight Coffee Creamer (946ml),4.99,Silk Coffee Creamer (946ml),4.79,products/us/delight.png,products/can/silkcoffee.png
+Dairy Products,Activia Yogurt (650g),4.49,Astro Yogurt (650g),4.29,products/us/activia.png,products/can/astro.png
+Dairy Products,Danone Creamy Yogurt (650g),4.49,Krema Yogurt (650g),4.29,products/us/danone.png,products/can/kremeyogurt.png
+Dairy Products,Velveeta Processed Cheese (450g),6.99,Armstrong Processed Cheese (450g),6.49,products/us/velveeta.png,products/can/armstrong.png
+Dairy Products,So Delicious Coconut Milk (1.89L),5.99,Earth's Own Coconut Milk (1.89L),5.49,products/us/sodelicious.png,products/can/earthsown.png
+Dairy Products,Almond Breeze Almond Milk (1.89L),4.99,Natrel Almond Milk (1.89L),4.79,products/us/almondbreeze.png,products/can/natrel.png
+Dairy Products,Silk Soy Milk (1.89L),4.99,Silk Soy Milk (1.89L),4.79,products/us/silksoy.png,products/can/silksoy.png
+Dairy Products,Reddi-wip Whipped Cream (225g),3.99,Gay Lea Real Whipped Cream (225g),3.79,products/us/reddiwip.png,products/can/gayleawhipped.png
+Dairy Products,Great Value Shredded Cheese (320g),5.49,Compliments Shredded Cheese (320g),5.29,products/us/greatvalue.png,products/can/complimentscheese.png
+Dairy Products,Lucerne Sour Cream (500ml),3.49,Beatrice Sour Cream (500ml),3.29,products/us/lucerne.png,products/can/beatrice.png
+Dairy Products,Great Value Cream Cheese (250g),3.49,Compliments Cream Cheese (250g),3.29,products/us/greatvaluecream.png,products/can/complimentscreamcheese.png
+Dairy Products,Blue Diamond Almond Breeze (1.89L),4.99,Earth's Own Almond Milk (1.89L),4.79,products/us/almondbreeze.png,products/can/earthsown.png
+Dairy Products,Great Value Greek Yogurt (650g),4.49,Compliments Greek Yogurt (650g),4.29,products/us/greatvalueyogurt.png,products/can/complimentsyogurt.png
+Dairy Products,Lactantia Cream Cheese (250g),3.99,Lactantia Cream Cheese (250g),3.79,products/us/creamcheese.png,products/can/lactantia.png
+Dairy Products,Yogourt Bio Kéfir (650g),5.99,Liberté Organic Kefir (650g),5.79,products/us/yogourtbio.png,products/can/liberte.png
+Dairy Products,Rolling Meadow Butter (454g),7.49,Rolling Meadow Butter (454g),6.99,products/us/rollingmeadow.png,products/can/rollingmeadowbutter.png
+Dairy Products,Skotidakis Greek Yogurt (8x120g),8.99,Skotidakis Greek Yogurt (8x120g),8.49,products/us/skotidakis.png,products/can/oikos.png
+Dairy Products,Dairyland Cottage Cheese (500g),4.49,Dairyland Cottage Cheese (500g),4.29,products/us/dairylandcottage.png,products/can/dairyland.png
+Dairy Products,Neilson Half & Half (1L),3.99,Neilson Half & Half (1L),3.79,products/us/neilson.png,products/can/neilson.png
+Dairy Products,Western Creamery Sour Cream (500ml),3.49,Western Creamery Sour Cream (500ml),3.29,products/us/westernsour.png,products/can/western.png
+Dairy Products,Beatrice Milk (2L),3.99,Beatrice Milk (2L),3.79,products/us/beatricemilk.png,products/can/beatrice.png
+Dairy Products,Gay Lea Real Whipped Cream (225g),3.99,Gay Lea Real Whipped Cream (225g),3.79,products/us/gaylea.png,products/can/gayleawhipped.png
+Dairy Products,Organic Meadow Milk (2L),6.49,Organic Meadow Milk (2L),5.99,products/us/organicmeadowmilk.png,products/can/organicmeadow.png
+Dairy Products,Armstrong Shredded Cheese (320g),5.49,Armstrong Shredded Cheese (320g),5.29,products/us/armstrongshredded.png,products/can/armstrongcheese.png
+Dairy Products,Dairyland Sour Cream (500ml),3.49,Dairyland Sour Cream (500ml),3.29,products/us/dairylandsour.png,products/can/dairyland.png
+Dairy Products,Black Diamond Cheese Slices (450g),5.99,Black Diamond Cheese Slices (450g),5.49,products/us/blackdiamond.png,products/can/blackdiamond.png
+Dairy Products,Natrel Milk (2L),3.99,Natrel Milk (2L),3.79,products/us/natrelmilk.png,products/can/natrel.png
+Dairy Products,Beatrice Light Sour Cream (500ml),3.49,Beatrice Light Sour Cream (500ml),3.29,products/us/beatricelight.png,products/can/beatrice.png
+Bread,Wonder Bread White (675g),3.49,Dempster's White Bread (675g),3.29,products/us/wonderbread.png,products/can/dempsters.png
+Bread,Wonder Bread Whole Wheat (675g),3.49,Dempster's Whole Wheat Bread (675g),3.29,products/us/wonderbreadwholewheat.png,products/can/dempsterswhole.png
+Bread,Pepperidge Farm Whole Grain Bread (675g),4.99,Country Harvest 12 Grain Bread (675g),4.79,products/us/pepperidge.png,products/can/countryharvestbread.png
+Bread,Arnold Multigrain Bread (675g),5.49,Dempster's Multigrain Bread (675g),5.29,products/us/arnold.png,products/can/dempstersmultigrain.png
+Bread,Thomas' English Muffins (6 pack),3.99,Dempster's English Muffins (6 pack),3.79,products/us/thomasenglishmuffins.png,products/can/dempstersenglishmuffins.png
+Bread,Wonder Hamburger Buns (8 pack),3.99,Dempster's Hamburger Buns (8 pack),3.79,products/us/wonderhamburger.png,products/can/dempstershamburger.png
+Bread,Wonder Hot Dog Buns (8 pack),3.99,Dempster's Hot Dog Buns (8 pack),3.79,products/us/wonderbreadhotdog.png,products/can/dempstershotdog.png
+Bread,Pepperidge Farm Swirl Cinnamon Bread (400g),5.99,Stonemill Cinnamon Raisin Bread (400g),5.79,products/us/pepperidgecinnamon.png,products/can/stonemill.png
+Bread,Oroweat Organic Bread (675g),6.49,Oroweat Organic Bread (675g),6.29,products/us/orowheat.png,
+Bread,King's Hawaiian Rolls (12 pack),6.99,,,products/us/kingshawaiian.png,
+Bread,Dempster's Bagels (6 pack),,Dempster's Bagels (6 pack),4.79,,products/can/dempstersbagels.png
+Bread,Silver Hills Sprouted Bread (680g),6.99,Silver Hills Sprouted Bread (680g),6.79,products/us/silverhills.png,products/can/silverhills.png
+Breakfast,,,,,,
+Breakfast,Kellogg's Frosted Flakes (425g),5.49,PC Corn Flakes (425g),5.29,products/us/frostedflakes.png,products/can/cornflakes.png
+Breakfast,Cheerios (350g),4.99,PC Multigrain O's (350g),4.79,products/us/cheerios.png,products/can/pcmultigrain.png
+Breakfast,Kellogg's Rice Krispies (440g),4.99,President's Choice Crispy Rice (440g),4.79,products/us/ricekrispies.png,products/can/pcricecrispy.png
+Breakfast,Cinnamon Toast Crunch (360g),5.49,Compliments Bran Flakes (360g),5.29,products/us/cinnamontoast.png,products/can/branflakes.png
+Breakfast,Quaker Instant Oatmeal (425g),4.99,Rogers Porridge Oats (425g),4.79,products/us/quakeroatmeal.png,products/can/roggersoats.png
+Breakfast,Eggo Waffles (280g),4.49,PC Belgian Waffles (280g),4.29,products/us/eggo.png,products/can/pcbelgianwaffles.png
+Breakfast,Nature's Path Granola (500g),5.99,Nature's Path Granola (500g),5.79,products/us/naturepathgranola.png,products/can/naturepathgranola.png
+Breakfast,Kashi Cereal (400g),6.49,Nature's Path Organic Cereal (400g),6.29,products/us/kashi.png,products/can/naturepathcereal.png
+Breakfast,Pop-Tarts (384g),4.99,,,products/us/poptarts.png,
+Breakfast,Quaker Chewy Granola Bars (156g),3.99,,,products/us/granolachewy.png,
+Breakfast,Kellogg's Nutri-Grain Bars (295g),4.99,Compliments Fruit & Grain Bars (295g),4.79,products/us/nutrigrain.png,products/can/complimentsbar.png
+Breakfast,,,KIND Dark Chocolate Nuts & Sea Salt (40g),2.29,,products/can/kinddarkchocolate.png
+Breakfast,Nature Valley Crunchy Granola Bars (210g),4.49,MadeGood Granola Bars (192g),4.29,products/us/naturevalley,products/can/madegoodgranolabars.png
+Breakfast,PC Frosted Wheat Squares (510g),,PC Frosted Wheat Squares (510g),5.79,,products/can/pcfrosted.png
+Breakfast,Cap'n Crunch (350g),5.49,PC Blue Menu Granola Cereal (350g),5.29,products/us/capncrunch.png,products/can/pcbluemenugranola.png
+Breakfast,Post Honey Bunches of Oats (411g),5.99,Compliments Granola (411g),5.79,products/us/honeybunches.png,products/can/bluemenugranola.png
+Breakfast,PC Protein Granola Cereal (400g),6.99,PC Protein Granola Cereal (400g),6.79,products/us/protein.png,products/can/pcbluemenugranola.png
+Breakfast,Quaker Harvest Crunch (500g),5.99,Nature's Path Crunchy Granola (500g),5.79,products/us/harvestcrunch.png,products/can/naturepathgranola.png
+Breakfast,Honey Nut Cheerios (430g),5.99,Nature's Path Toaster Pastries (430g),5.79,products/us/cheerios.png,products/can/naturespathtoaster.png
+Breakfast,Kellogg's Rice Krispies Treats (176g),4.49,Dare Fudge Cookies (176g),4.29,products/us/ricekrispies.png,products/can/darefudge.png
+Snacks,Old Dutch Classic Chips (235g),4.29,Old Dutch Classic Chips (235g),3.99,products/us/olddutch.png,products/can/olddutch.png
+Snacks,PC Loads of Nacho Chips (235g),4.29,PC Loads of Nacho Chips (235g),3.99,products/us/pcloadofnacho.png,products/can/pcloadofnachochips.png
+Snacks,Ruffles All Dressed Chips (200g),4.29,Humpty Dumpty All Dressed Chips (200g),3.99,products/us/ruffles.png,products/can/humptydumptyalldressed.png
+Snacks,Cheetos Crunchy (245g),4.29,Hawkins Cheezies (210g),3.99,products/us/cheetos.png,products/can/hawkinscheezies.png
+Snacks,Pringles Original (156g),3.99,Neal Brothers Pretzels (156g),3.79,products/us/pringles.png,products/can/nealbrotherspretzels.png
+Snacks,Que Pasa Tortilla Chips (300g),4.99,Que Pasa Tortilla Chips (300g),4.79,products/us/quepasa.png,products/can/quepasa.png
+Snacks,Hardbite Rock Salt & Vinegar Chips (150g),4.29,Hardbite Rock Salt & Vinegar Chips (150g),3.99,products/us/hardbite.png,products/can/hardbiterocksaltandvinegar.png
+Snacks,Wonderful Pistachios (275g),4.49,Wonderful Pistachios (275g),4.29,products/us/pistachios.png,products/can/pistachios.png
+Snacks,Jack Link's Beef Jerky (80g),7.99,McSweeney's Beef Jerky (80g),7.49,products/us/jacklinks.png,products/can/mcsweeneysjerky.png
+Snacks,MadeGood Granola Bars (192g),4.49,MadeGood Granola Bars (192g),4.29,products/us/madegood.png,products/can/madegoodgranolabars.png
+Snacks,Hershey's Milk Chocolate Bar (100g),2.99,Cadbury Dairy Milk (100g),2.79,products/us/Hersheys.png,products/can/cadburydarkchocolate.png
+Snacks,Reese's Peanut Butter Cups (3 pack),2.99,Smarties (3 pack),2.79,products/us/reese.png,products/can/smarties.png
+Snacks,Snickers Bar (52g),1.99,Rocket's (52g),1.79,products/us/snickers.png,products/can/rocketscandy.png
+Snacks,M&M's Peanut (120g),3.99,Peak Freans Cookies (120g),3.79,products/us/m&m.png,products/can/peakfreans.png
+Snacks,KitKat Chocolate Bar (45g),1.99,Aero Chocolate Bar (45g),1.79,products/us/kitkat.png,products/can/aero.png
+Snacks,Oreo Cookies (303g),4.29,Christie Fudgee-O (303g),3.99,products/us/oreo.png,products/can/christiefudge.png
+Snacks,Welch's Fruit Snacks (226g),4.99,Fruitsations (226g),4.79,products/us/welchs.png,products/can/fruitsations.png
+Snacks,Dare Breton Crackers (200g),4.29,Dare Breton Crackers (200g),3.99,products/us/breton.png,products/can/breton.png
+Snacks,Triscuit Original (225g),4.49,Christie Wheat Thins (225g),4.29,products/us/triscuit.png,products/can/christiewheat.png
+Snacks,PC Blue Menu Trail Mix (300g),6.99,PC Blue Menu Trail Mix (300g),6.79,products/us/pctrail.png,products/can/pctrailmix.png

@@ -22,7 +22,7 @@ interface GroceryListInputProps {
 
 const GroceryListInput = ({ onSubmit, isProcessing }: GroceryListInputProps) => {
   const { t } = useLanguage();
-  const [inputMethod, setInputMethod] = useState<'text' | 'upload' | 'camera'>('text');
+  const [inputMethod, setInputMethod] = useState<'text' | 'upload' > ('text');
   const [groceryItems, setGroceryItems] = useState('');
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -89,16 +89,7 @@ const GroceryListInput = ({ onSubmit, isProcessing }: GroceryListInputProps) => 
           >
             <Upload className="h-4 w-4" />
             <span>{t('scan.input.upload')}</span>
-          </Button>
-          <Button 
-            variant={inputMethod === 'camera' ? 'default' : 'outline'}
-            size="sm"
-            onClick={() => setInputMethod('camera')}
-            className="gap-1 whitespace-nowrap"
-          >
-            <Camera className="h-4 w-4" />
-            <span>{t('scan.input.camera')}</span>
-          </Button>
+            </Button>
         </div>
         
         {inputMethod === 'text' && (
@@ -153,19 +144,6 @@ const GroceryListInput = ({ onSubmit, isProcessing }: GroceryListInputProps) => 
           </div>
         )}
         
-        {inputMethod === 'camera' && (
-          <div className="border rounded-lg p-4 sm:p-8 text-center">
-            <div className="flex flex-col items-center justify-center gap-2">
-              <div className="w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-2">
-                <Camera className="h-6 w-6 text-gray-500 dark:text-gray-400" />
-              </div>
-              <h3 className="text-lg font-medium">{t('scan.camera.title')}</h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400 max-w-xs">
-                {t('scan.camera.description')}
-              </p>
-            </div>
-          </div>
-        )}
         
         {groceryItems.trim().length > 0 && (
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-4 pt-4 border-t border-gray-100 dark:border-gray-800 gap-3">

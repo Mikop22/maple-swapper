@@ -1,3 +1,4 @@
+import { loadDefaultCSVData } from '@/lib/csvParser';
 
 export interface Product {
   id: string;
@@ -10,7 +11,7 @@ export interface Product {
   description?: string;
 }
 
-// Initial sample data for demonstration (will be replaced by CSV data when available)
+// Initial sample data for demonstration (will be used as fallback)
 const initialAmericanProducts: Product[] = [
   {
     id: 'a1',
@@ -137,9 +138,33 @@ const initialCanadianAlternatives: Product[] = [
   }
 ];
 
-// Use mutable variables that can be updated by the CSV import
+// Initialize with default data
 let americanProducts: Product[] = [...initialAmericanProducts];
 let canadianAlternatives: Product[] = [...initialCanadianAlternatives];
+
+// Since loadDefaultCSVData returns a Promise, we need to load the data asynchronously
+// Initialize data loading but don't wait for it to complete
+const loadData = async () => {
+  try {
+    const data = await loadDefaultCSVData();
+    
+    // Check if the returned data has the expected structure
+    if (data && data.americanProducts && Array.isArray(data.americanProducts)) {
+      americanProducts = data.americanProducts;
+    }
+    
+    if (data && data.canadianAlternatives && Array.isArray(data.canadianAlternatives)) {
+      canadianAlternatives = data.canadianAlternatives;
+    }
+    
+    console.log('CSV data loaded successfully');
+  } catch (error) {
+    console.error('Failed to load CSV data, using initial sample data instead:', error);
+  }
+};
+
+// Start loading the data but don't block
+loadData();
 
 // Get all American products
 export const getAmericanProducts = (): Product[] => {
@@ -154,28 +179,10 @@ export const getCanadianProducts = (): Product[] => {
 // Find a product by name (for the grocery list search)
 export const findProductByName = (name: string): Product | undefined => {
   const normalizedName = name.toLowerCase().trim();
-  return americanProducts.find(
+  
+  // Search in both American and Canadian products
+  return [...americanProducts, ...canadianAlternatives].find(
     product => product.name.toLowerCase().includes(normalizedName) || 
     product.brand.toLowerCase().includes(normalizedName)
   );
-};
-
-// Update the product data from CSV import
-export const updateProductData = (
-  newAmericanProducts: Product[],
-  newCanadianAlternatives: Product[]
-) => {
-  // Clear existing data
-  americanProducts = [];
-  canadianAlternatives = [];
-  
-  // Add new items
-  americanProducts.push(...newAmericanProducts);
-  canadianAlternatives.push(...newCanadianAlternatives);
-  
-  // Return the updated data
-  return {
-    americanProducts,
-    canadianAlternatives
-  };
 };

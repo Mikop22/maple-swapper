@@ -87,7 +87,7 @@ const Index = () => {
         </div>
       </section>
       
-      <section className="py-12 md:py-20 bg-white dark:bg-gray-900">
+      <section className="py-12 md:py-20 bg-white dark:bg-transparent">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-3xl mx-auto text-center mb-8 md:mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2 md:mb-4 fade-cascade-1">
@@ -138,7 +138,7 @@ const Index = () => {
             ))}
           </div>
 
-          <div className="mt-10 md:mt-20 max-w-4xl mx-auto bg-secondary rounded-2xl p-6 md:p-8 text-center scale-in-item" style={{"--item-delay": "0.4s"} as any}>
+          <div className="mt-10 md:mt-20 max-w-4xl mx-auto bg-red-100/60 dark:bg-red-900/40 rounded-2xl p-6 md:p-8 text-center scale-in-item" style={{"--item-delay": "0.4s"} as any}>
             <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 fade-cascade-3">{t('home.cta.title')}</h3>
             <p className="mb-4 md:mb-6 max-w-2xl mx-auto fade-cascade-4">{t('home.cta.description')}</p>
             <Button 

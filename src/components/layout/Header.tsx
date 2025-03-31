@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -11,6 +11,7 @@ import { Menu, X, Leaf } from 'lucide-react';
 const Header = () => {
   const location = useLocation();
   const { t } = useLanguage();
+  const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navigation = [
@@ -27,18 +28,26 @@ const Header = () => {
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="fixed w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md z-40 border-b border-gray-200 dark:border-gray-800 shadow-sm">
+    <header className={cn( "fixed top-0 w-full z-50 transition-all duration-300 ease-in-out px-6 md:px-10 py-2", "bg-white/90 dark:bg-transparent backdrop-blur-md shadow-sm" )}>
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center h-16">
           {/* Logo and brand */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center gap-2">
-              <span className="flex items-center justify-center w-8 h-8 rounded-md bg-gray-900 dark:bg-gray-100">
-                <Leaf className="h-5 w-5 text-white dark:text-gray-900" />
+              <span className="flex items-center justify-center w-8 h-8 rounded-md">
+                <Leaf className="h-6 w-6 text-canada-red" />
               </span>
-              <span className="text-xl font-bold text-primary">{t('app.name')}</span>
+              <span className="font-medium text-lg text-canada-dark dark:text-white">{t('app.name')}</span>
             </Link>
           </div>
 
@@ -49,10 +58,9 @@ const Header = () => {
                 key={item.href}
                 to={item.href}
                 className={cn(
-                  "px-3 py-2 rounded-md text-sm font-medium transition-colors",
+                  "text-sm font-medium px-3 py-2 border-b-2 transition-all",
                   isActive(item.href)
-                    ? "bg-primary text-primary-foreground"
-                    : "text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+                    ? "border-canada-red text-canada-dark dark:text-white" : "border-transparent text-gray-500 dark:text-gray-400 hover:text-canada-dark dark:hover:text-white"
                 )}
               >
                 {item.name}
