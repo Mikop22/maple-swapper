@@ -8,7 +8,7 @@ const About = () => {
   const { t } = useLanguage();
   
   return (
-    <Layout className="py-6 md:py-12 px-4 md:px-6">
+    <Layout className="container mx-auto mt-14 py-16 px-4 md:px-6">
       <div className="container max-w-4xl mx-auto">
         <div className="max-w-3xl mx-auto text-center mb-8 md:mb-12 pt-4">
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2 md:mb-4">

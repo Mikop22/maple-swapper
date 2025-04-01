@@ -1,5 +1,4 @@
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -11,6 +10,7 @@ import { Menu, X, Leaf } from 'lucide-react';
 const Header = () => {
   const location = useLocation();
   const { t } = useLanguage();
+  const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navigation = [
@@ -27,9 +27,17 @@ const Header = () => {
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="fixed w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md z-40 border-b border-gray-200 dark:border-gray-800 shadow-sm">
+    <header className={cn( "fixed top-0 w-full z-50 transition-all duration-300 ease-in-out px-6 md:px-10 py-2", "bg-white/90 dark:bg-transparent backdrop-blur-md shadow-sm" )}>
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center h-16">
           {/* Logo and brand */}
@@ -38,11 +46,8 @@ const Header = () => {
               <span className="relative flex items-center justify-center w-8 h-8 rounded-md bg-gray-900 dark:bg-gray-100 overflow-hidden">
                 <Leaf className="absolute h-5 w-5 text-white dark:text-gray-900 animate-pulse-subtle" />
                 <span className="absolute inset-0 bg-gradient-to-r from-canada-red to-canada-blue opacity-0 group-hover:opacity-80 transition-opacity duration-700"></span>
-                <span className="absolute h-full w-full bg-canada-red/20 dark:bg-canada-red/30 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700"></span>
               </span>
-              <span className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 group-hover:from-canada-red group-hover:to-canada-blue transition-all duration-700">
-                {t('app.name')}
-              </span>
+              <span className="text-xl font-bold text-gray-900 dark:text-white">MapleSwapper</span>
             </Link>
           </div>
 
@@ -53,10 +58,9 @@ const Header = () => {
                 key={item.href}
                 to={item.href}
                 className={cn(
-                  "px-3 py-2 rounded-md text-sm font-medium transition-colors",
+                  "text-sm font-medium px-3 py-2 border-b-2 transition-all",
                   isActive(item.href)
-                    ? "bg-primary text-primary-foreground"
-                    : "text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+                    ? "border-canada-red text-canada-dark dark:text-white" : "border-transparent text-gray-500 dark:text-gray-400 hover:text-canada-dark dark:hover:text-white"
                 )}
               >
                 {item.name}
