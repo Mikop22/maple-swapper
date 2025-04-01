@@ -42,25 +42,27 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo and brand */}
           <div className="flex items-center">
-            <Link to="/" className="flex items-center gap-2 group">
-              <span className="relative flex items-center justify-center w-8 h-8 rounded-md bg-gray-900 dark:bg-gray-100 overflow-hidden">
-                <Leaf className="absolute h-5 w-5 text-white dark:text-gray-900 animate-pulse-subtle" />
-                <span className="absolute inset-0 bg-gradient-to-r from-canada-red to-canada-blue opacity-0 group-hover:opacity-80 transition-opacity duration-700"></span>
+            <Link to="/" className="flex items-center gap-3 group">
+              <div className="w-8 h-8 flex items-center justify-center border border-gray-200 dark:border-gray-700 rounded-lg">
+                <Leaf className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+              </div>
+              <span className="text-base text-gray-700 dark:text-gray-200">
+                MapleSwapper
               </span>
-              <span className="text-xl font-bold text-gray-900 dark:text-white">MapleSwapper</span>
             </Link>
           </div>
 
           {/* Desktop navigation */}
-          <nav className="hidden md:flex items-center space-x-1">
+          <nav className="hidden md:flex items-center space-x-8">
             {navigation.map((item) => (
               <Link
                 key={item.href}
                 to={item.href}
                 className={cn(
-                  "text-sm font-medium px-3 py-2 border-b-2 transition-all",
+                  "text-sm transition-colors relative pb-1",
                   isActive(item.href)
-                    ? "border-canada-red text-canada-dark dark:text-white" : "border-transparent text-gray-500 dark:text-gray-400 hover:text-canada-dark dark:hover:text-white"
+                    ? "text-gray-900 dark:text-white after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gray-900 dark:after:bg-white" 
+                    : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:w-full hover:after:h-0.5 hover:after:bg-gray-900 dark:hover:after:bg-white hover:after:opacity-50"
                 )}
               >
                 {item.name}

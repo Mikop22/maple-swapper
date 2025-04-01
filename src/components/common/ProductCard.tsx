@@ -71,9 +71,9 @@ const ProductCard = ({ product, compact = false, className }: ProductCardProps) 
           {product.brand}
         </p>
         
-        {!compact && product.description && (
+        {!compact  && (
           <p className="text-sm text-gray-600 dark:text-gray-300 mt-1 line-clamp-2">
-            {product.description}
+            
           </p>
         )}
         

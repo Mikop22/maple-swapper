@@ -1,87 +1,68 @@
 import { loadDefaultCSVData } from '@/lib/csvParser';
-import { GoogleGenerativeAI } from '@google/generative-ai';
-const canadianBrands = "Black Diamond, Lactantia, Liberté, Gay Lea, Organic Meadow, Dempster's, Country Harvest, President's Choice, No Name,"
-const americanBrands = "Kraft, Yoplait, Land O'Lakes, Horizon Organic, Wonder Bread, Pepperidge Farm, Arnold Bread, Thomas, Kellogg's," 
-interface GeminiAnalysisResult {
-  brandsToAvoid?: string[];
-  brandsToLookFor?: string[];
-  insights?: string;
-  reccomendedProducts?: string[];
+import OpenAI from "openai";
+
+const canadianBrands = "Black Diamond, Lactantia, Liberté, Gay Lea, Organic Meadow, Dempster's, Country Harvest, President's Choice, No Name,";
+const americanBrands = "Kraft, Yoplait, Land O'Lakes, Horizon Organic, Wonder Bread, Pepperidge Farm, Arnold Bread, Thomas, Kellogg's,";
+
+const openai = new OpenAI({
+  baseURL: 'https://api.deepseek.com',
+  apiKey: import.meta.env.VITE_DEEPSEEK_API_KEY || "",
+  dangerouslyAllowBrowser: true
+});
+
+interface GroceryAnalysisResult {
+  brandsToAvoid: string[];
+  brandsToLookFor: string[];
+  insights: string;
+  recommendedProducts: string[];
 }
 
-export const findGrocery = async (items: string): Promise<GeminiAnalysisResult | null> => {
-    const data = await loadDefaultCSVData();
-    const canadianAlternatives = data.canadianAlternatives;
-    const prompt = `given this grocery list ${items}, only using the following data ${JSON.stringify(canadianAlternatives)} reccomend canadian products (no more than 2) from the data, and 6 canadian brands from only this list ${canadianBrands} only , and their top 6 american brands to avoid based on what their needs from the data ${americanBrands} only. Return only the json,use exactly the brand and product names i've given, and use the following Schema:
+export const analyzeGroceryList = async (items: string): Promise<GroceryAnalysisResult> => {
+  const data = await loadDefaultCSVData();
+  console.log("Starting grocery analysis for:", items);
+  
+  const prompt = `Analyze this grocery list for Canadian consumers:
+  ${items}
+  
+  Available Canadian brands: ${canadianBrands}
+  Common American brands to avoid: ${americanBrands}
+  
+  Provide your response in JSON format with the following structure:
+  {
+    "recommendedProducts": ["Product 1", "Product 2"],
+    "brandsToAvoid": ["Brand 1", "Brand 2", "Brand 3", "Brand 4", "Brand 5", "Brand 6"],
+    "brandsToLookFor": ["Brand 1", "Brand 2", "Brand 3", "Brand 4", "Brand 5", "Brand 6"],
+    "insights": "Brief shopping insights text here"
+  }
+  
+  Include:
+  - Top 2 Canadian product matches from our database
+  - 6 recommended Canadian brands
+  - 6 American brands to avoid
+  - Brief shopping insights`;
 
-responseSchema: {
-type: "object",
-properties: {
-reccomendedProducts: {
-type: "array",
-items: {
-type: "string"
-}
-},
-brandsToAvoid: {
-type: "array",
-items: {
-type: "string"
-}
-},
-brandsToLookFor: {
-type: "array",
-items: {
-type: "string"
-}
-},
-insights: {
-type: "string"
-}
-}
-},
-};`;
+  console.log("Sending prompt to DeepSeek API");
+  
+  try {
+    const completion = await openai.chat.completions.create({
+      model: 'deepseek-chat',
+      messages: [{
+        role: "user",
+        content: prompt
+      }],
+      response_format: { type: "json_object" }
+    });
 
-    const GEMINI_API_KEY = "AIzaSyDEIpiqa39xk347cn-Tj7aOhcJPPe6u-yw"; 
-
-    try {
-      const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+    console.log("API response received:", completion.choices[0].message.content);
     
-      const model = genAI.getGenerativeModel({
-        model: "gemini-2.0-flash-lite",
-      });
+    const result = JSON.parse(completion.choices[0].message.content);
+    console.log("Parsed result:", result);
     
-      const generationConfig = {
-        temperature: 1,
-        topP: 0.95,
-        topK: 40,
-        maxOutputTokens: 8192,
-        responseMimeType: "application/text",
-      };
-    
-      const chatSession = model.startChat({
-        history: [],
-      });
-    
-      const result = await chatSession.sendMessage(prompt);
-      console.log(result.response.text());
-      
-      // Parse the JSON text response instead of using .json() method
-      let responseText = result.response.text();
-      responseText.trim()
-      responseText = responseText.trim(); 
-      responseText = responseText.replace(/^(```json\s*|\s*```|\n|\r)*/, ""); // Remove leading "```json", "```", newlines, and carriage returns
-      responseText = responseText.replace(/(```\s*|\n|\r)*$/, ""); // Remove trailing "```", newlines, and carriage returns
-      const jsonResponse = JSON.parse(responseText);
-      
-      return {
-        reccomendedProducts: jsonResponse.reccomendedProducts || [],
-        brandsToAvoid: jsonResponse.brandsToAvoid || [],
-        brandsToLookFor: jsonResponse.brandsToLookFor || [],
-        insights: jsonResponse.insights || ''
-      };
-    } catch (error) {
-      console.error('Error calling Gemini API:', error);
-      return null;
-    }
+    return result;
+  } catch (error) {
+    console.error('DeepSeek API Error:', error);
+    throw new Error('Failed to analyze grocery list');
+  }
 };
+
+export const findGrocery = analyzeGroceryList;

@@ -5,10 +5,9 @@ export interface Product {
   name: string;
   brand: string;
   category: string;
-  origin: 'US' | 'Canada' | 'Other';
+  origin: 'US' | 'Canada';
   image: string;
   price?: number;
-  description?: string;
 }
 
 // Initial sample data for demonstration (will be used as fallback)
@@ -21,7 +20,6 @@ const initialAmericanProducts: Product[] = [
     origin: 'US',
     image: '/placeholder.svg',
     price: 3.99,
-    description: 'Classic American white bread.'
   },
   {
     id: 'a2',
@@ -31,7 +29,6 @@ const initialAmericanProducts: Product[] = [
     origin: 'US',
     image: '/placeholder.svg',
     price: 4.49,
-    description: 'America\'s favorite ketchup.'
   },
   {
     id: 'a3',
@@ -40,8 +37,7 @@ const initialAmericanProducts: Product[] = [
     category: 'Spreads',
     origin: 'US',
     image: '/placeholder.svg',
-    price: 5.99,
-    description: 'Creamy peanut butter.'
+    price: 5.99,  
   },
   {
     id: 'a4',
@@ -51,7 +47,6 @@ const initialAmericanProducts: Product[] = [
     origin: 'US',
     image: '/placeholder.svg',
     price: 4.99,
-    description: 'Pure premium orange juice.'
   },
   {
     id: 'a5',
@@ -61,7 +56,6 @@ const initialAmericanProducts: Product[] = [
     origin: 'US',
     image: '/placeholder.svg',
     price: 5.49,
-    description: 'Crunchy cereal with real honey.'
   },
   {
     id: 'a6',
@@ -71,7 +65,6 @@ const initialAmericanProducts: Product[] = [
     origin: 'US',
     image: '/placeholder.svg',
     price: 6.99,
-    description: 'Premium American butter.'
   }
 ];
 
@@ -83,8 +76,7 @@ const initialCanadianAlternatives: Product[] = [
     category: 'Bakery',
     origin: 'Canada',
     image: '/placeholder.svg',
-    price: 3.79,
-    description: 'Canadian-made bread with Italian inspiration.'
+    price: 3.79,    
   },
   {
     id: 'c2',
@@ -94,7 +86,7 @@ const initialCanadianAlternatives: Product[] = [
     origin: 'Canada',
     image: '/placeholder.svg',
     price: 4.29,
-    description: 'Made with 100% Canadian tomatoes.'
+  
   },
   {
     id: 'c3',
@@ -104,7 +96,6 @@ const initialCanadianAlternatives: Product[] = [
     origin: 'Canada',
     image: '/placeholder.svg',
     price: 5.49,
-    description: 'Smooth peanut butter with no artificial colors.'
   },
   {
     id: 'c4',
@@ -114,7 +105,6 @@ const initialCanadianAlternatives: Product[] = [
     origin: 'Canada',
     image: '/placeholder.svg',
     price: 4.79,
-    description: 'Premium orange juice made in Canada.'
   },
   {
     id: 'c5',
@@ -124,7 +114,6 @@ const initialCanadianAlternatives: Product[] = [
     origin: 'Canada',
     image: '/placeholder.svg',
     price: 5.99,
-    description: 'Organic cereal made by a Canadian company.'
   },
   {
     id: 'c6',
@@ -134,7 +123,6 @@ const initialCanadianAlternatives: Product[] = [
     origin: 'Canada',
     image: '/placeholder.svg',
     price: 6.49,
-    description: 'Butter produced by Canadian dairy farmers.'
   }
 ];
 
