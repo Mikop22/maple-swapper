@@ -44,7 +44,7 @@ const Header = () => {
           <div className="flex items-center">
             <Link to="/" className="flex items-center gap-3 group">
               <div className="w-8 h-8 flex items-center justify-center border border-gray-200 dark:border-gray-700 rounded-lg">
-                <Leaf className="h-4 w-4 text-red-600 dark:text-white" />
+                <Leaf className="h-4 w-4 text-red-600 dark:text-red-600" />
               </div>
               <span className="text-base font-weight-1000 text-black dark:text-white">
                 MapleSwapper
