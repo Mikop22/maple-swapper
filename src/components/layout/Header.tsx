@@ -37,16 +37,16 @@ const Header = () => {
   }, []);
 
   return (
-    <header className={cn( "fixed top-0 w-full z-50 transition-all duration-300 ease-in-out px-6 md:px-10 py-2", "bg-white/90 dark:bg-transparent backdrop-blur-md shadow-sm" )}>
+    <header className={cn( "fixed top-0 w-full z-20 transition-all duration-300 ease-in-out px-4 md:px-6 py-1", "bg-white/90 dark:bg-transparent backdrop-blur-md shadow-sm" )}>
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center h-16">
           {/* Logo and brand */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center gap-3 group">
               <div className="w-8 h-8 flex items-center justify-center border border-gray-200 dark:border-gray-700 rounded-lg">
-                <Leaf className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                <Leaf className="h-4 w-4 text-red-600 dark:text-white" />
               </div>
-              <span className="text-base text-gray-700 dark:text-gray-200">
+              <span className="text-base font-weight-1000 text-black dark:text-white">
                 MapleSwapper
               </span>
             </Link>
@@ -61,8 +61,8 @@ const Header = () => {
                 className={cn(
                   "text-sm transition-colors relative pb-1",
                   isActive(item.href)
-                    ? "text-gray-900 dark:text-white after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gray-900 dark:after:bg-white" 
-                    : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:w-full hover:after:h-0.5 hover:after:bg-gray-900 dark:hover:after:bg-white hover:after:opacity-50"
+                    ? "text-gray-900 dark:text-white after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-red-600 dark:after:bg-red-600" 
+                    : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:w-full hover:after:h-0.5 hover:after:bg-red-600 dark:hover:after:bg-red-600 hover:after:opacity-50"
                 )}
               >
                 {item.name}
@@ -104,7 +104,7 @@ const Header = () => {
                 className={cn(
                   "block px-3 py-2 rounded-md text-base font-medium",
                   isActive(item.href)
-                    ? "bg-primary text-primary-foreground"
+                    ? "bg-red-600 text-white"
                     : "text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
                 )}
                 onClick={() => setMobileMenuOpen(false)}
