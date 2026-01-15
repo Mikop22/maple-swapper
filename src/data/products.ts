@@ -174,3 +174,17 @@ export const findProductByName = (name: string): Product | undefined => {
     product.brand.toLowerCase().includes(normalizedName)
   );
 };
+
+// Update product data from CSV upload
+export const updateProductData = (
+  newAmericanProducts: Product[],
+  newCanadianAlternatives: Product[]
+): void => {
+  if (Array.isArray(newAmericanProducts) && newAmericanProducts.length > 0) {
+    americanProducts = newAmericanProducts;
+  }
+  
+  if (Array.isArray(newCanadianAlternatives) && newCanadianAlternatives.length > 0) {
+    canadianAlternatives = newCanadianAlternatives;
+  }
+};

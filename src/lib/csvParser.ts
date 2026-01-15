@@ -94,3 +94,34 @@ export const loadDefaultCSVData = async (): Promise<{
     };
   }
 };
+
+// Handle CSV file upload and parse its contents
+export const handleCSVUpload = (file: File): Promise<{
+  americanProducts: Product[],
+  canadianAlternatives: Product[]
+}> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    
+    reader.onload = (event) => {
+      try {
+        const csvData = event.target?.result as string;
+        if (!csvData) {
+          reject(new Error('Failed to read file contents'));
+          return;
+        }
+        
+        const result = parseCSVToProducts(csvData);
+        resolve(result);
+      } catch (error) {
+        reject(error);
+      }
+    };
+    
+    reader.onerror = () => {
+      reject(new Error('Failed to read file'));
+    };
+    
+    reader.readAsText(file);
+  });
+};

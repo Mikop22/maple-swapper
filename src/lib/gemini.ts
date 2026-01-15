@@ -4,11 +4,16 @@ import OpenAI from "openai";
 const canadianBrands = "Black Diamond, Lactantia, Liberté, Gay Lea, Organic Meadow, Dempster's, Country Harvest, President's Choice, No Name,";
 const americanBrands = "Kraft, Yoplait, Land O'Lakes, Horizon Organic, Wonder Bread, Pepperidge Farm, Arnold Bread, Thomas, Kellogg's,";
 
-const openai = new OpenAI({
+// NOTE: Using dangerouslyAllowBrowser is a security risk as it exposes API keys in the browser.
+// For production, API calls should be routed through a backend proxy server to protect credentials.
+// This is a known limitation for client-side applications without a backend.
+const apiKey = import.meta.env.VITE_DEEPSEEK_API_KEY;
+
+const openai = apiKey ? new OpenAI({
   baseURL: 'https://api.deepseek.com',
-  apiKey: import.meta.env.VITE_DEEPSEEK_API_KEY || "",
-  dangerouslyAllowBrowser: true
-});
+  apiKey: apiKey,
+  dangerouslyAllowBrowser: true // Required for client-side usage - consider backend proxy for production
+}) : null;
 
 interface GroceryAnalysisResult {
   brandsToAvoid: string[];
@@ -18,8 +23,18 @@ interface GroceryAnalysisResult {
 }
 
 export const analyzeGroceryList = async (items: string): Promise<GroceryAnalysisResult> => {
-  const data = await loadDefaultCSVData();
-  console.log("Starting grocery analysis for:", items);
+  // Validate API client is available
+  if (!openai) {
+    console.warn('DeepSeek API key not configured. Using fallback response.');
+    return {
+      brandsToAvoid: americanBrands.split(',').map(b => b.trim()).filter(Boolean).slice(0, 6),
+      brandsToLookFor: canadianBrands.split(',').map(b => b.trim()).filter(Boolean).slice(0, 6),
+      insights: 'API not configured. Showing default Canadian alternatives.',
+      recommendedProducts: ['President\'s Choice products', 'No Name alternatives']
+    };
+  }
+
+  await loadDefaultCSVData();
   
   const prompt = `Analyze this grocery list for Canadian consumers:
   ${items}
@@ -40,8 +55,6 @@ export const analyzeGroceryList = async (items: string): Promise<GroceryAnalysis
   - 6 recommended Canadian brands
   - 6 American brands to avoid
   - Brief shopping insights`;
-
-  console.log("Sending prompt to DeepSeek API");
   
   try {
     const completion = await openai.chat.completions.create({
@@ -53,10 +66,12 @@ export const analyzeGroceryList = async (items: string): Promise<GroceryAnalysis
       response_format: { type: "json_object" }
     });
 
-    console.log("API response received:", completion.choices[0].message.content);
+    const content = completion.choices[0].message.content;
+    if (!content) {
+      throw new Error('Empty response from API');
+    }
     
-    const result = JSON.parse(completion.choices[0].message.content);
-    console.log("Parsed result:", result);
+    const result = JSON.parse(content);
     
     return result;
   } catch (error) {
