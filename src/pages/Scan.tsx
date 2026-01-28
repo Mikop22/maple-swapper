@@ -158,17 +158,9 @@ const Scan = () => {
           {brands.length > 0 ? (
             brands.map((brand, index) => (
               <li key={index} className="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-800 rounded-md">
-                {/* Display the brand logo */}
-                <div className="w-6 h-6 bg-white dark:bg-gray-900 rounded-full flex items-center justify-center overflow-hidden">
-                  <img
-                    src={`/brands/${brand.toLowerCase().replace(/\s+/g, '-')}.png`}
-                    alt={brand}
-                    className="w-5 h-5 object-contain"
-                    onError={(e) => {
-                      e.currentTarget.src = '/brands/default-placeholder.png'; // Fallback image
-                      e.currentTarget.onerror = null; // Prevent infinite error loop
-                    }}
-                  />
+                {/* Display brand initial as logo placeholder */}
+                <div className="w-6 h-6 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center overflow-hidden text-xs font-semibold text-gray-600 dark:text-gray-300">
+                  {brand.charAt(0).toUpperCase()}
                 </div>
                 <span>{brand}</span>
               </li>
@@ -353,9 +345,9 @@ const Scan = () => {
                               <CardTitle className="text-lg font-medium">
                                 {canadianProduct?.name || product}
                               </CardTitle>
-                              {canadianProduct?.price && (
+                              {canadianProduct?.price !== undefined && canadianProduct.price > 0 ? (
                                 <p className="text-sm text-gray-500">${canadianProduct.price.toFixed(2)} CAD</p>
-                              )}
+                              ) : null}
                             </CardHeader>
                             <CardContent className="pt-4">
                               <p className="text-sm text-gray-600 dark:text-gray-400">
