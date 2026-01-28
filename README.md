@@ -4,12 +4,10 @@
 
 MapleSwapper helps Canadians find local alternatives to common American grocery products. Upload your grocery list and we'll suggest Canadian equivalents using AI-powered analysis.
 
-![MapleSwapper Homepage](https://github.com/user-attachments/assets/312e1c5b-4d6f-4268-9ae9-77967df9e35d)
-
 ## ✨ Features
 
 - **Smart Grocery List Scanning** - Enter or upload your grocery list and get Canadian alternatives
-- **Browse Products** - Explore our database of 87+ Canadian products and their American counterparts
+- **Browse Products** - Explore our database of Canadian products and their American counterparts
 - **AI-Powered Analysis** - Uses DeepSeek AI to provide intelligent product recommendations
 - **Bilingual Support** - Available in English and French
 - **Dark/Light Theme** - Toggle between themes for comfortable viewing

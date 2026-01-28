@@ -345,6 +345,7 @@ const Scan = () => {
                               <CardTitle className="text-lg font-medium">
                                 {canadianProduct?.name || product}
                               </CardTitle>
+                              {/* Only show price if it's a positive value - zero/undefined means price data not available */}
                               {canadianProduct?.price !== undefined && canadianProduct.price > 0 ? (
                                 <p className="text-sm text-gray-500">${canadianProduct.price.toFixed(2)} CAD</p>
                               ) : null}
