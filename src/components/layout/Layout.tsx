@@ -10,7 +10,7 @@ interface LayoutProps {
 
 const Layout = ({ children, className }: LayoutProps) => {
   return (
-    <div className="min-h-screen flex flex-col overflow-hidden">
+    <div className="min-h-screen flex flex-col">
       <main className={cn("flex-1", className)}>
         <PageTransition>
           {children}

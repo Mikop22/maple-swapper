@@ -1,4 +1,5 @@
 
+import { useEffect } from 'react';
 import Layout from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Leaf, ShoppingCart } from 'lucide-react';
@@ -9,6 +10,14 @@ import LanguageSwitcher from '@/components/layout/LanguageSwitcher';
 const Index = () => {
   const navigate = useNavigate();
   const { t } = useLanguage();
+
+  // Make body non-scrollable on this page only
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
 
   return (
     <Layout>
@@ -84,12 +93,12 @@ const Index = () => {
             </div>
           </div>
         </div>
-
-        {/* Language Switcher - Fixed in bottom right corner */}
-        <div className="fixed bottom-6 right-6 z-50">
-          <LanguageSwitcher />
-        </div>
       </section>
+
+      {/* Language Switcher - Fixed in bottom right corner */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <LanguageSwitcher />
+      </div>
     </Layout>
   );
 };

@@ -33,7 +33,7 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     // Light mode only - do nothing
   };
 
-  const setThemeFunc = () => {
+  const setThemeFunc = (_: Theme) => {
     // Light mode only - do nothing
   };
 
