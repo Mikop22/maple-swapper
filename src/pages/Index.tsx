@@ -13,9 +13,9 @@ const Index = () => {
 
   // Make body non-scrollable on this page only
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
+    document.body.classList.add('no-scroll');
     return () => {
-      document.body.style.overflow = '';
+      document.body.classList.remove('no-scroll');
     };
   }, []);
 

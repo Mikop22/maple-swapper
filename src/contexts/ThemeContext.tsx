@@ -33,16 +33,15 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     // Light mode only - do nothing
   };
 
-  const setThemeFunc = (_: Theme) => {
+  const setThemeFunc = (theme: Theme) => {
     // Light mode only - do nothing
   };
 
   // Apply theme to document
   useEffect(() => {
     const root = window.document.documentElement;
-    root.classList.remove('light', 'dark');
+    root.classList.remove('dark');
     root.classList.add('light');
-    localStorage.setItem('theme', 'light');
   }, []);
 
   return (
