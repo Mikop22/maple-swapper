@@ -25,36 +25,28 @@ interface ThemeProviderProps {
 
 // Theme provider component
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-  // Get initial theme from localStorage or system preference
-  const [theme, setTheme] = useState<Theme>(() => {
-    // Check localStorage first
-    const savedTheme = localStorage.getItem('theme') as Theme;
-    if (savedTheme) return savedTheme;
-    
-    // Check system preference
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
-    }
-    
-    // Default to light
-    return 'light';
-  });
+  // Force light mode only
+  const [theme] = useState<Theme>('light');
 
-  // Toggle theme function
+  // No-op toggle theme function
   const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
+    // Light mode only - do nothing
+  };
+
+  const setThemeFunc = () => {
+    // Light mode only - do nothing
   };
 
   // Apply theme to document
   useEffect(() => {
     const root = window.document.documentElement;
     root.classList.remove('light', 'dark');
-    root.classList.add(theme);
-    localStorage.setItem('theme', theme);
-  }, [theme]);
+    root.classList.add('light');
+    localStorage.setItem('theme', 'light');
+  }, []);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, setTheme: setThemeFunc, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );

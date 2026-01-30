@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -10,7 +9,6 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import Index from "./pages/Index";
 import Scan from "./pages/Scan";
 import Browse from "./pages/Browse";
-import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 
 // Create a new query client
@@ -26,7 +24,6 @@ const AnimatedRoutes = () => {
         <Route path="/" element={<Index />} />
         <Route path="/scan" element={<Scan />} />
         <Route path="/browse" element={<Browse />} />
-        <Route path="/about" element={<About />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>
