@@ -6,7 +6,7 @@ import { getCanadianProducts, Product, getAmericanProducts } from '@/data/produc
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Search, Sparkles } from 'lucide-react';
+import { Search, Sparkles, ArrowLeft } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Browse = () => {
@@ -40,6 +40,14 @@ const Browse = () => {
   return (
     <Layout>
     <div className="container mx-auto py-0 md:py-16 px-4 md:px-6">
+        <Button
+          variant="ghost"
+          onClick={() => window.history.back()}
+          className="inline-flex items-center text-gray-500 hover:text-gray-700 mb-4 px-0 mt-20"
+        >
+          <ArrowLeft className="h-4 w-4 mr-1" />
+          Back to Home
+        </Button>
         <div className="max-w-2xl mx-auto text-center mb-6 md:mb-10 animate-fade-in pt-4">
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2 md:mb-4 animate-fade-in">
             {t('browse.title')}
