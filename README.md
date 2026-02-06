@@ -109,9 +109,6 @@ maple-swapper/
 |----------|-------------|----------|
 | `VITE_DEEPSEEK_API_KEY` | DeepSeek API key for AI analysis | No (fallback available) |
 
-## 📄 License
-
-This project is private.
 
 ## 🙏 Acknowledgments
 
